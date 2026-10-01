@@ -11,6 +11,18 @@
     <meta name="title" content="{{ .Title | emojify }} &middot; {{ .Site.Title | emojify }}" />
   {{- end }}
   {{/* Asset bundles */}}
+  <script>
+    (function() {
+      try {
+        const pref = localStorage.getItem('appearance');
+        if (pref === 'light') {
+          document.documentElement.classList.remove('dark');
+        } else {
+          document.documentElement.classList.add('dark');
+        }
+      } catch (e) {}
+    })();
+  </script>
   {{ $assets := newScratch }}
   {{ $algorithm := .Site.Params.fingerprintAlgorithm | default "sha256" }}
   {{ $jsAppearance := resources.Get "js/appearance.js" }}

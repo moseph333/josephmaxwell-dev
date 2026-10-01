@@ -1,6 +1,7 @@
 colorScheme = "ocean"
 defaultAppearance = "dark"
-autoSwitchAppearance = true
+autoSwitchAppearance = false
+defaultThemeColor = "#0f172a"
 
 enableSearch = true
 enableCodeCopy = true

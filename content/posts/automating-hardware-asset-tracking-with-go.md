@@ -8,7 +8,7 @@ tags: ["datacenter", "automation", "Apps Script", "Go", "tooling"]
 
 In a busy datacenter facility, tracking hardware requests through unstructured chat pings or messy ticket threads inevitably causes dropped handoffs and lost shift hours. Technicians spend time walking rows or asking around to verify whether a part was staged, installed, or routed for physical destruction instead of doing hardware turn-up.
 
-To eliminate that friction, I built a facility tracking system that quickly became our team's most widely adopted tool.
+To eliminate that friction, I took an internal tracking template originally shared by my mentor, then extended and evolved it into our facility's most widely adopted logistics tool.
 
 ## The Problem
 
@@ -18,21 +18,23 @@ Manual request tracking breaks down across shift rotations in predictable ways:
 - **Lost context:** Chat threads and free-text ticket notes bury part serial numbers, MAC addresses, and rack location updates.
 - **Wasted triage time:** Incoming shift leads spend 20 to 30 minutes verifying the status of active requests instead of starting rack work.
 
-## Meeting Technicians Where They Work
+## Extending What Worked: Forms, Sheets, and Apps Script
 
 When building tools for operational teams, adoption beats architectural purity every time. Technicians on the datacenter floor don't want to authenticate against a separate web portal or maintain local dependencies.
 
-I built the initial system using Google Forms, Google Sheets, and Google Apps Script:
+My mentor had created a simple spreadsheet to log incoming parts, which proved that centralizing requests could work. But as our shift rotations and deployment pace increased, manual spreadsheet entries started suffering from missing serial numbers and untracked status changes.
 
-1. **Structured intake with Google Forms:** The form enforced strict validation on asset serial numbers, target rack coordinates, component categories, and requester details.
+Rather than trying to force an entirely new platform onto the team, I took my mentor's foundation and built an automation layer around it using Google Forms, Google Sheets, and Google Apps Script:
+
+1. **Structured intake with Google Forms:** Replaced direct spreadsheet editing with a form that enforced strict validation on asset serial numbers, target rack coordinates, component categories, and requester details.
 2. **Automated state engine with Apps Script:** When an intake form was submitted, Apps Script validated the payload, stamped an immutable timestamp, assigned an initial state (`Staged`), and triggered notifications to on-duty leads.
 3. **Real-time visibility in Sheets:** A locked summary sheet served as a live floor dashboard, color-coding aging requests and recording every state transition.
 
-Because the tool lived inside tools the team already used daily, adoption was immediate. It resolved ambiguity between shifts and became the standard workflow for tracking facility hardware requests.
+Because the workflow met technicians inside tools they already had open all day, adoption was immediate. It resolved ambiguity between shifts and became the standard way our team managed hardware requests across the facility.
 
 ## Why I Am Learning Go
 
-Building the Apps Script tool proved how valuable clean state machines and structured schemas are to floor operations. As I started exploring ways to integrate directly with local Linux bastions, parse hardware logs, and build lightweight CLI utilities, Go became the clear next language to learn.
+Extending that tool showed me firsthand how valuable clean state machines and structured schemas are to floor operations. As I started exploring ways to integrate directly with local Linux bastions, parse hardware logs, and build lightweight CLI utilities, Go became the clear next language to learn.
 
 A few operational characteristics make Go appealing for datacenter infrastructure:
 

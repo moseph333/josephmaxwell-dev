@@ -11,7 +11,7 @@ showTableOfContents: true
 
 I'm **Joseph Maxwell**, a Datacenter Technician at Google working on production AI/ML accelerator infrastructure.
 
-My daily work combines physical hardware turn-up and site operations: commissioning TPU accelerator clusters, diagnosing optical paths across Optical Circuit Switches (OCS), triaging complex hardware faults with agentic AI, and building tools in Google Apps Script and Go to eliminate repetitive manual inventory tracking.
+My daily work combines physical hardware turn-up and site operations: commissioning TPU accelerator clusters, diagnosing optical paths across Optical Circuit Switches (OCS), triaging complex hardware faults with agentic AI, and maintaining facility tracking workflows in Google Apps Script alongside active Go learning.
 
 Before Google, I spent 14 years in freelance IT consultation and hardware servicing. That background taught me how to triage hardware faults quickly, manage client expectations, and execute under maintenance window pressure.
 
@@ -30,8 +30,8 @@ Isolate optical transport faults using power meters, Visual Fault Locators (VFL)
 **AI-Assisted Diagnostics & Team Knowledge Sharing**
 Perform root-cause failure analysis across 23+ production architectures (accelerator, compute, high-density storage) by combining hands-on systems knowledge with agentic AI tooling. Actively share techniques and train teammates on practical AI workflows to speed up incident triage.
 
-**Facility Logistics Automation**
-Built the facility's most widely adopted hardware tracking system using Google Apps Script, Google Forms, and Google Sheets, replacing manual tracking with structured workflows. Currently expanding facility tooling capabilities in Go.
+**Facility Logistics Tooling**
+Extended and maintained an internal hardware tracking system adapted from a mentor. Expanded it with Google Apps Script, Google Forms, and Google Sheets to eliminate shift handoff friction across the facility. Currently exploring backend tooling in Go.
 
 **Storage Media Destruction**
 Handled the secure staging, chain-of-custody tracking, and physical destruction of decommissioned storage media according to NIST SP 800-88 physical destruction standards.

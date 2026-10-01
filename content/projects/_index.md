@@ -43,19 +43,19 @@ Perform root-cause failure analysis across 23+ production architectures (acceler
 
 ---
 
-## Facility Logistics Automation
+## Facility Logistics Tooling & Extension
 
-**Role:** Author and Maintainer, Internal Tooling
+**Role:** Maintainer & Tooling Contributor, Internal Operations
 
-Built the facility's primary hardware tracking tool using Google Apps Script, Google Forms, and Google Sheets to manage hardware requests across shift rotations. Manual ticketing and unstructured chat requests had created bottlenecks and inventory errors between shifts. The tool standardized intake with structured forms, automated state transitions and notifications via Apps Script, and provided the floor with real-time inventory visibility. Currently expanding facility tooling capabilities in Go.
+Adapted an internal hardware tracking tool originally created by a mentor, then heavily extended, improved, and maintained it using Google Apps Script, Google Forms, and Google Sheets. The extended workflow standardized intake with structured forms, automated state transitions and notifications via Apps Script, and gave floor leads real-time visibility into parts movement across shift rotations. Currently exploring backend services in Go to expand local facility tooling.
 
 **Key contributions:**
-- Built the facility's most widely adopted logistics tool using Google Apps Script, Google Forms, and Google Sheets
-- Standardized hardware intake and replaced unstructured shift handoffs with automated state transitions
-- Provided real-time inventory tracking and audit logs across shift rotations
-- Currently developing backend services in Go to expand local facility tooling
+- Adapted and extended a mentor's initial tracking template into the facility's primary logistics tool
+- Implemented automated state transitions, notifications, and data validation with Google Apps Script
+- Standardized hardware intake forms and eliminated dropped context between shift handoffs
+- Currently developing backend services in Go to explore compiled tooling for local bastions
 
-**Skills:** Google Apps Script, Google Workspace (Forms & Sheets), workflow automation, Go (learning), inventory management
+**Skills:** Google Apps Script, Google Workspace (Forms & Sheets), workflow automation, Go (learning), inventory tracking
 
 ---
 

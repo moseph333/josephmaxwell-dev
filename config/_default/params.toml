@@ -56,3 +56,9 @@ fingerprintAlgorithm = "sha256"
 
 [taxonomy]
   showTermCount = true
+
+[umamiAnalytics]
+  site = "831caab6-e535-4375-b1de-edd82c689e2e"
+  script = "/stats/script.js"
+  hostUrl = "/stats"
+  domains = "josephmaxwell.dev"

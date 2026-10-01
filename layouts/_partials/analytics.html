@@ -1,0 +1,39 @@
+{{ if hugo.IsProduction }}
+  {{ with .Site.Params.fathomAnalytics.site }}
+    <script defer src="https://cdn.usefathom.com/script.js" data-site="{{ . }}"></script>
+  {{ end }}
+  {{ with site.Params.plausibleAnalytics.domain }}
+    <script
+      defer
+      data-domain="{{ . }}"
+      data-api="{{ default "https://plausible.io/api/event" site.Params.plausibleAnalytics.event }}"
+      src="{{ default "https://plausible.io/js/script.js" site.Params.plausibleAnalytics.script }}"
+    ></script>
+  {{ end }}
+  {{ with site.Params.umamiAnalytics }}
+    {{- $defaultScript := printf "https://%s.umami.is/script.js" (default "eu" .region) }}
+    <script
+      defer
+      src="{{ default $defaultScript .script }}"
+      data-website-id="{{ .site }}"
+      {{ with .hostUrl }}data-host-url="{{ . }}"{{ end }}
+      {{ with .domains }}data-domains="{{ . }}"{{ end }}
+    ></script>
+    <script>
+      document.addEventListener("click", function (e) {
+        var link = e.target && e.target.closest ? e.target.closest("a") : null;
+        if (!link || !link.href) return;
+        try {
+          var targetUrl = new URL(link.href, window.location.origin);
+          if (targetUrl.origin !== window.location.origin && window.umami && typeof window.umami.track === "function") {
+            window.umami.track("outbound-link", {
+              url: link.href,
+              label: (link.textContent || link.getAttribute("aria-label") || link.title || "").trim().slice(0, 100)
+            });
+          }
+        } catch (err) {}
+      });
+    </script>
+  {{ end }}
+  {{ partial "google_analytics.html" . }}
+{{ end }}

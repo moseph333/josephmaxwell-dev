@@ -59,11 +59,12 @@
       <div class="dc-term-chips">
         <span style="color: #8b949e; font-size: 10px; font-weight: 600; text-transform: uppercase; margin-right: 4px;">Run:</span>
         <button type="button" class="dc-chip-btn term-chip" data-cmd="whoami">whoami</button>
-        <button type="button" class="dc-chip-btn term-chip" data-cmd="uname -a">uname -a</button>
+        <button type="button" class="dc-chip-btn term-chip" data-cmd="ls -la">ls -la</button>
+        <button type="button" class="dc-chip-btn term-chip" data-cmd="cat facility_tracker.gs">cat facility_tracker.gs</button>
+        <button type="button" class="dc-chip-btn term-chip" data-cmd="./tpu_turnup.sh">./tpu_turnup.sh</button>
+        <button type="button" class="dc-chip-btn term-chip" data-cmd="cat experience.md">cat experience.md</button>
         <button type="button" class="dc-chip-btn term-chip" data-cmd="lshw">lshw</button>
         <button type="button" class="dc-chip-btn term-chip" data-cmd="ip link">ip link</button>
-        <button type="button" class="dc-chip-btn term-chip" data-cmd="cat experience.md">cat experience.md</button>
-        <button type="button" class="dc-chip-btn term-chip" data-cmd="ls -la">ls -la</button>
         <button type="button" class="dc-chip-btn term-chip" data-cmd="help">help</button>
       </div>
 
@@ -255,6 +256,156 @@
   const history = [];
   let historyIndex = -1;
 
+  const fileSystem = {
+    'facility_tracker.gs': {
+      perms: '-rw-r--r--',
+      links: 1,
+      owner: 'joseph',
+      group: 'dc-tech',
+      size: 2400,
+      date: 'Oct  1 04:30',
+      desc: 'Google Apps Script source text',
+      isExec: false,
+      content: function() {
+        return '<pre class="dc-term-pre"><span class="dc-term-cyan">// Google Apps Script: Area Logistics Hardware Tracker</span>\n' +
+          '<span class="dc-term-muted">// Standardizes intake, automates status transitions, and eliminates repetitive entries</span>\n\n' +
+          '<span class="dc-term-green">function</span> onFormSubmit(e) {\n' +
+          '  <span class="dc-term-cyan">const</span> sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(\'IntakeQueue\');\n' +
+          '  <span class="dc-term-cyan">const</span> values = e.namedValues;\n' +
+          '  <span class="dc-term-cyan">const</span> assetTag = values[\'Asset Serial\'][0].trim().toUpperCase();\n' +
+          '  <span class="dc-term-cyan">const</span> rackCoord = values[\'Rack Location\'][0].trim();\n' +
+          '  <span class="dc-term-cyan">const</span> partType = values[\'Component Category\'][0];\n' +
+          '  <span class="dc-term-cyan">const</span> reqLead = values[\'Requester\'][0];\n\n' +
+          '  <span class="dc-term-muted">// Auto-assign UUID & initial state machine status</span>\n' +
+          '  <span class="dc-term-cyan">const</span> trackingId = Utilities.getUuid().substring(0, 8).toUpperCase();\n' +
+          '  <span class="dc-term-cyan">const</span> timestamp = <span class="dc-term-green">new</span> Date();\n' +
+          '  sheet.appendRow([trackingId, timestamp, assetTag, rackCoord, partType, \'STAGED\', reqLead]);\n\n' +
+          '  <span class="dc-term-muted">// Notify shift technicians</span>\n' +
+          '  sendShiftNotification(trackingId, assetTag, rackCoord, \'STAGED\');\n' +
+          '}\n\n' +
+          '<span class="dc-term-green">function</span> updateItemStatus(trackingId, newStatus, technician) {\n' +
+          '  <span class="dc-term-cyan">const</span> validStates = [\'STAGED\', \'IN_TRANSIT\', \'INSTALLED\', \'DEST_PENDING\'];\n' +
+          '  <span class="dc-term-muted">// Enforces legal state transitions to prevent shift handoff errors</span>\n' +
+          '  <span class="dc-term-green">if</span> (!validStates.includes(newStatus)) <span class="dc-term-green">throw new</span> Error(\'Invalid transition: \' + newStatus);\n' +
+          '  logAuditTrail(trackingId, newStatus, technician, <span class="dc-term-green">new</span> Date());\n' +
+          '}</pre>';
+      }
+    },
+    'bio.md': {
+      perms: '-rw-r--r--',
+      links: 1,
+      owner: 'joseph',
+      group: 'dc-tech',
+      size: 1024,
+      date: 'Oct  1 04:30',
+      desc: 'UTF-8 Unicode markdown text',
+      isExec: false,
+      content: function() {
+        return '<div style="display: flex; flex-direction: column; gap: 6px;">' +
+          '<div class="dc-term-green" style="font-weight: bold;"># Joseph Maxwell — Bio</div>' +
+          '<div>Datacenter Technician at Google diagnosing hardware using systems knowledge and agentic AI.</div>' +
+          '<div><span class="dc-term-cyan">• Infrastructure:</span> TPU v5e/v5p cluster commissioning, Optical Circuit Switch (OCS) fiber mesh testing, and storage media physical destruction (NIST SP 800-88).</div>' +
+          '<div><span class="dc-term-cyan">• Tooling:</span> Extended and improved area logistics workflows in Google Apps Script, Forms, and Sheets to cut repetitive entries and eliminate shift handoff friction.</div>' +
+          '<div><span class="dc-term-cyan">• Philosophy:</span> Master physical constraints and operational schemas, then direct AI agents to generate clean, low-friction tools.</div>' +
+          '</div>';
+      }
+    },
+    'experience.md': {
+      perms: '-rw-r--r--',
+      links: 1,
+      owner: 'joseph',
+      group: 'dc-tech',
+      size: 2048,
+      date: 'Oct  1 04:30',
+      desc: 'UTF-8 Unicode markdown text',
+      isExec: false,
+      content: function() {
+        return '<div style="display: flex; flex-direction: column; gap: 6px;">' +
+          '<div class="dc-term-green" style="font-weight: bold;"># Professional Experience</div>' +
+          '<div><span class="dc-term-cyan" style="font-weight: 600;">• Google (Oct 2023 – Present)</span><br>' +
+          '<span class="dc-term-muted" style="padding-left: 12px; display: inline-block;">Datacenter Technician: TPU v5e/v5p turn-up, optical fault isolation, AI-assisted hardware diagnostics across 23+ architectures, team AI mentoring, storage media destruction, area logistics tooling in Apps Script &amp; Sheets.</span></div>' +
+          '<div><span class="dc-term-cyan" style="font-weight: 600;">• Akkodis (Apr 2023 – Oct 2023)</span><br>' +
+          '<span class="dc-term-muted" style="padding-left: 12px; display: inline-block;">Datacenter Technician contract supporting production compute fleet.</span></div>' +
+          '<div><span class="dc-term-cyan" style="font-weight: 600;">• Freelance IT Consultant (2009 – 2023)</span><br>' +
+          '<span class="dc-term-muted" style="padding-left: 12px; display: inline-block;">14 years hardware servicing, infrastructure consulting, and client operations.</span></div>' +
+          '</div>';
+      }
+    },
+    'skills.json': {
+      perms: '-rw-r--r--',
+      links: 1,
+      owner: 'joseph',
+      group: 'dc-tech',
+      size: 850,
+      date: 'Oct  1 04:30',
+      desc: 'JSON text data',
+      isExec: false,
+      content: function() {
+        return '<pre class="dc-term-pre">{\n' +
+          '  <span class="dc-term-cyan">"ai_diagnostics"</span>: ["Agentic AI hardware triage", "Team AI workflow training", "RCA across 23+ architectures"],\n' +
+          '  <span class="dc-term-cyan">"automation"</span>: ["Google Apps Script", "Google Workspace (Forms &amp; Sheets)", "Agent-directed tooling", "Bash"],\n' +
+          '  <span class="dc-term-cyan">"hardware"</span>: ["TPU v5e/v5p", "GPU servers", "23+ architectures"],\n' +
+          '  <span class="dc-term-cyan">"optical"</span>: ["OCS routing", "VFLs", "Power meters", "Fiber patch (MPO/LC/SC)"],\n' +
+          '  <span class="dc-term-cyan">"compliance"</span>: ["Storage media destruction", "LOTO electrical safety"]\n' +
+          '}</pre>';
+      }
+    },
+    'media_destruction.conf': {
+      perms: '-rw-r--r--',
+      links: 1,
+      owner: 'joseph',
+      group: 'dc-tech',
+      size: 420,
+      date: 'Oct  1 04:30',
+      desc: 'ASCII text configuration file',
+      isExec: false,
+      content: function() {
+        return '<pre class="dc-term-pre"><span class="dc-term-cyan"># NIST SP 800-88 Storage Media Physical Destruction Guidelines</span>\n' +
+          '[standards]\n' +
+          'standard_id = NIST_SP_800_88_REV1\n' +
+          'sanitization_type = PHYSICAL_DESTRUCTION\n' +
+          'methods_authorized = degaussing, disintegration, incineration, shredding\n\n' +
+          '[custody_tracking]\n' +
+          'dual_custody_signoff = enforced\n' +
+          'bin_tamper_evident_seals = verified\n' +
+          'destruction_certificate_retention = 7_years\n' +
+          'status = COMPLIANT</pre>';
+      }
+    },
+    'tpu_turnup.sh': {
+      perms: '-rwxr-xr-x',
+      links: 1,
+      owner: 'joseph',
+      group: 'dc-tech',
+      size: 3500,
+      date: 'Oct  1 04:30',
+      desc: 'Bourne-Again shell script, executable',
+      isExec: true,
+      content: function() {
+        return '<pre class="dc-term-pre"><span class="dc-term-cyan">#!/usr/bin/env bash</span>\n' +
+          '<span class="dc-term-muted"># TPU Accelerator Cluster Turn-Up Verification Script</span>\n' +
+          '<span class="dc-term-green">set</span> -euo pipefail\n\n' +
+          'echo "[*] Initializing TPU v5e/v5p cluster verification sequence..."\n' +
+          'echo "[*] Probing PCIe accelerator host links..."\n' +
+          'echo "[*] Checking Optical Circuit Switch (OCS) fiber mesh..."\n' +
+          'echo "[*] Measuring optical power levels: Rx=-3.1 dBm, Tx=-1.7 dBm (OPTIMAL)..."\n' +
+          'echo "[*] Testing torus interconnect ring: 0 CRC errors..."\n' +
+          'echo "[+] Cluster turn-up complete. All health checks passed. Node READY."</pre>';
+      },
+      run: function() {
+        return '<div class="dc-term-pre">' +
+          '<span class="dc-term-cyan">Executing ./tpu_turnup.sh...</span>\n' +
+          '[*] Initializing TPU v5e/v5p cluster verification sequence...\n' +
+          '[*] Probing PCIe accelerator interface: <span class="dc-term-green">DETECTED (TPU v5p x4)</span>\n' +
+          '[*] Checking Optical Circuit Switch (OCS) fiber mesh: <span class="dc-term-green">ALIGNED</span>\n' +
+          '[*] Measuring optical power levels: Rx=-3.1 dBm, Tx=-1.7 dBm (<span class="dc-term-green">OPTIMAL</span>)\n' +
+          '[*] Testing torus interconnect ring: <span class="dc-term-green">0 CRC errors</span>\n' +
+          '<span class="dc-term-green">✔ All cluster turn-up health checks passed. Node active and ready for AI training.</span>\n' +
+          '</div>';
+      }
+    }
+  };
+
   const commands = {
     'uname -a': function() {
       return '<div class="dc-term-pre">Linux bastion 6.8.0-cloud-tpu #42-Google SMP PREEMPT_DYNAMIC x86_64 GNU/Linux\n' +
@@ -280,17 +431,6 @@
     'lshw -short': function() {
       return commands['lshw']();
     },
-    'cat experience.md': function() {
-      return '<div style="display: flex; flex-direction: column; gap: 6px;">' +
-        '<div class="dc-term-green" style="font-weight: bold;"># Professional Experience</div>' +
-        '<div><span class="dc-term-cyan" style="font-weight: 600;">• Google (Oct 2023 – Present)</span><br>' +
-        '<span class="dc-term-muted" style="padding-left: 12px; display: inline-block;">Datacenter Technician: TPU v5e/v5p turn-up, optical fault isolation, AI-assisted hardware diagnostics across 23+ architectures, team AI mentoring, storage media destruction, area logistics tooling in Apps Script &amp; Sheets.</span></div>' +
-        '<div><span class="dc-term-cyan" style="font-weight: 600;">• Akkodis (Apr 2023 – Oct 2023)</span><br>' +
-        '<span class="dc-term-muted" style="padding-left: 12px; display: inline-block;">Datacenter Technician contract supporting production compute fleet.</span></div>' +
-        '<div><span class="dc-term-cyan" style="font-weight: 600;">• Freelance IT Consultant (2009 – 2023)</span><br>' +
-        '<span class="dc-term-muted" style="padding-left: 12px; display: inline-block;">14 years hardware servicing, infrastructure consulting, and client operations.</span></div>' +
-        '</div>';
-    },
     'ip link': function() {
       return '<pre class="dc-term-pre">1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 65536 qdisc noqueue state UNKNOWN\n' +
         '2: ocs0: &lt;BROADCAST,MULTICAST,UP&gt; mtu 9000 state UP\n' +
@@ -302,29 +442,32 @@
       return commands['ip link']();
     },
     'ls': function() {
-      return commands['ls -la']();
+      let out = '<div style="display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 4px;">';
+      for (const [name, meta] of Object.entries(fileSystem)) {
+        const isExec = meta.isExec;
+        const clickCmd = isExec ? `./${name}` : `cat ${name}`;
+        const cls = isExec ? 'dc-term-file executable' : 'dc-term-file';
+        const indicator = isExec ? '*' : '';
+        out += `<span class="${cls}" data-cmd="${clickCmd}" title="Click to ${isExec ? 'run' : 'view'}">${name}${indicator}</span>`;
+      }
+      out += '</div><div class="dc-term-muted" style="font-size: 10.5px;">Click any file above or type <span class="dc-term-cyan">cat &lt;file&gt;</span>.</div>';
+      return out;
     },
     'ls -la': function() {
-      return '<pre class="dc-term-pre">drwxr-xr-x  4 joseph dc-tech 4096 Oct  1 05:00 .\n' +
-        'drwxr-xr-x  3 root   root    4096 Oct  1 00:00 ..\n' +
-        '-rw-r--r--  1 joseph dc-tech 2400 Oct  1 04:30 facility_tracker.gs\n' +
-        '-rw-r--r--  1 joseph dc-tech 1024 Oct  1 04:30 bio.md\n' +
-        '-rw-r--r--  1 joseph dc-tech 2048 Oct  1 04:30 experience.md\n' +
-        '-rw-r--r--  1 joseph dc-tech  850 Oct  1 04:30 skills.json\n' +
-        '-rw-r--r--  1 joseph dc-tech  420 Oct  1 04:30 media_destruction.conf\n' +
-        '-rwxr-xr-x  1 joseph dc-tech 3500 Oct  1 04:30 tpu_turnup.sh</pre>';
+      let out = '<div class="dc-term-pre">drwxr-xr-x  4 joseph dc-tech 4096 Oct  1 05:00 .\n' +
+        'drwxr-xr-x  3 root   root    4096 Oct  1 00:00 ..\n';
+      for (const [name, meta] of Object.entries(fileSystem)) {
+        const isExec = meta.isExec;
+        const clickCmd = isExec ? `./${name}` : `cat ${name}`;
+        const cls = isExec ? 'dc-term-file executable' : 'dc-term-file';
+        const indicator = isExec ? '*' : '';
+        out += `${meta.perms}  ${meta.links} ${meta.owner} ${meta.group} ${String(meta.size).padStart(4, ' ')} ${meta.date} <span class="${cls}" data-cmd="${clickCmd}" title="Click to ${isExec ? 'run' : 'view'}">${name}${indicator}</span>\n`;
+      }
+      out += '</div><div class="dc-term-muted" style="margin-top: 6px; font-size: 10.5px;">Click any file above or type <span class="dc-term-cyan">cat &lt;file&gt;</span> / <span class="dc-term-cyan">./tpu_turnup.sh</span>.</div>';
+      return out;
     },
-    'cat skills.json': function() {
-      return '<pre class="dc-term-pre">{\n' +
-        '  <span class="dc-term-cyan">"ai_diagnostics"</span>: ["Agentic AI hardware triage", "Team AI workflow training", "RCA across 23+ architectures"],\n' +
-        '  <span class="dc-term-cyan">"automation"</span>: ["Google Apps Script", "Google Workspace (Forms &amp; Sheets)", "Agent-directed tooling", "Bash"],\n' +
-        '  <span class="dc-term-cyan">"hardware"</span>: ["TPU v5e/v5p", "GPU servers", "23+ architectures"],\n' +
-        '  <span class="dc-term-cyan">"optical"</span>: ["OCS routing", "VFLs", "Power meters", "Fiber patch (MPO/LC/SC)"],\n' +
-        '  <span class="dc-term-cyan">"compliance"</span>: ["Storage media destruction", "LOTO electrical safety"]\n' +
-        '}</pre>';
-    },
-    'skills': function() {
-      return commands['cat skills.json']();
+    'll': function() {
+      return commands['ls -la']();
     },
     'systemctl status tpu': function() {
       return '<pre class="dc-term-pre">● tpu-cluster.service - Google Cloud TPU Accelerator Cluster Turn-Up\n' +
@@ -340,19 +483,19 @@
     },
     'help': function() {
       return '<div style="display: flex; flex-direction: column; gap: 6px;">' +
-        '<div class="dc-term-green" style="font-weight: bold;">Available Unix commands:</div>' +
+        '<div class="dc-term-green" style="font-weight: bold;">Available Unix commands &amp; files:</div>' +
         '<div class="dc-term-grid">' +
-        '<div><span class="dc-term-cyan">uname -a</span> <span class="dc-term-muted">— OS &amp; kernel info</span></div>' +
+        '<div><span class="dc-term-cyan">ls -la</span> <span class="dc-term-muted">— List files (clickable)</span></div>' +
+        '<div><span class="dc-term-cyan">cat &lt;file&gt;</span> <span class="dc-term-muted">— View file contents</span></div>' +
+        '<div><span class="dc-term-cyan">./tpu_turnup.sh</span> <span class="dc-term-muted">— Run turn-up check</span></div>' +
         '<div><span class="dc-term-cyan">whoami</span> <span class="dc-term-muted">— Role &amp; bio</span></div>' +
         '<div><span class="dc-term-cyan">lshw</span> <span class="dc-term-muted">— Hardware &amp; TPUs</span></div>' +
         '<div><span class="dc-term-cyan">ip link</span> <span class="dc-term-muted">— Optical links</span></div>' +
-        '<div><span class="dc-term-cyan">cat experience.md</span> <span class="dc-term-muted">— Career history</span></div>' +
-        '<div><span class="dc-term-cyan">cat skills.json</span> <span class="dc-term-muted">— Tech stack</span></div>' +
-        '<div><span class="dc-term-cyan">ls -la</span> <span class="dc-term-muted">— List directory</span></div>' +
         '<div><span class="dc-term-cyan">systemctl status tpu</span> <span class="dc-term-muted">— Cluster status</span></div>' +
+        '<div><span class="dc-term-cyan">uname -a</span> <span class="dc-term-muted">— OS &amp; kernel info</span></div>' +
         '<div><span class="dc-term-cyan">clear</span> <span class="dc-term-muted">— Clear screen</span></div>' +
         '</div>' +
-        '<div class="dc-term-muted" style="font-size: 10px; margin-top: 4px;">Tip: Click buttons above or type commands with Up/Down arrow history.</div>' +
+        '<div class="dc-term-muted" style="font-size: 10px; margin-top: 4px;">Files: facility_tracker.gs, bio.md, experience.md, skills.json, media_destruction.conf, tpu_turnup.sh</div>' +
         '</div>';
     },
     'clear': function() {
@@ -377,8 +520,68 @@
 
     if (commands[lower]) {
       outputHtml = commands[lower]();
+    } else if (lower === './tpu_turnup.sh' || lower === 'bash tpu_turnup.sh' || lower === 'sh tpu_turnup.sh' || lower === 'tpu_turnup.sh') {
+      outputHtml = fileSystem['tpu_turnup.sh'].run();
+    } else if (lower.startsWith('./')) {
+      const fileName = lower.slice(2).trim();
+      if (fileSystem[fileName]) {
+        if (fileSystem[fileName].isExec) {
+          outputHtml = fileSystem[fileName].run();
+        } else {
+          outputHtml = `<div class="dc-term-error">bash: ./${escapeHtml(fileName)}: Permission denied. File is not executable. Use <span class="dc-term-cyan">'cat ${escapeHtml(fileName)}'</span> to view.</div>`;
+        }
+      } else {
+        outputHtml = `<div class="dc-term-error">bash: ./${escapeHtml(fileName)}: No such file or directory</div>`;
+      }
     } else {
-      outputHtml = `<div class="dc-term-error">bash: ${escapeHtml(cmd)}: command not found. Type <span class="dc-term-cyan">'help'</span> for available commands.</div>`;
+      const parts = cmd.split(/\s+/);
+      const action = parts[0].toLowerCase();
+      const target = parts.slice(1).join(' ').trim().replace(/^['"]|['"]$/g, '').replace(/^\.\//, '');
+
+      if (['cat', 'head', 'tail', 'less', 'more', 'view'].includes(action)) {
+        if (!target) {
+          outputHtml = `<div class="dc-term-error">${action}: missing file operand. Try <span class="dc-term-cyan">'cat facility_tracker.gs'</span> or <span class="dc-term-cyan">'ls -la'</span>.</div>`;
+        } else if (fileSystem[target]) {
+          outputHtml = fileSystem[target].content();
+        } else {
+          outputHtml = `<div class="dc-term-error">${action}: ${escapeHtml(target)}: No such file or directory. Type <span class="dc-term-cyan">'ls -la'</span> to view files.</div>`;
+        }
+      } else if (action === 'file') {
+        if (!target) {
+          outputHtml = `<div class="dc-term-error">file: missing file operand</div>`;
+        } else if (target === '*' || target === '.') {
+          outputHtml = '<div class="dc-term-pre">' + Object.keys(fileSystem).map(f => `<span class="dc-term-cyan">${f}</span>: ${fileSystem[f].desc}`).join('\n') + '</div>';
+        } else if (fileSystem[target]) {
+          outputHtml = `<div><span class="dc-term-cyan">${escapeHtml(target)}</span>: ${fileSystem[target].desc}</div>`;
+        } else {
+          outputHtml = `<div class="dc-term-error">file: cannot open '${escapeHtml(target)}' (No such file or directory)</div>`;
+        }
+      } else if (action === 'stat') {
+        if (!target) {
+          outputHtml = `<div class="dc-term-error">stat: missing file operand</div>`;
+        } else if (fileSystem[target]) {
+          const f = fileSystem[target];
+          outputHtml = `<pre class="dc-term-pre">  File: ${escapeHtml(target)}\n  Size: ${f.size}        Blocks: 8          IO Block: 4096   regular file\nDevice: 259/1     Inode: 419201      Links: ${f.links}\nAccess: (${f.perms})  Uid: ( 1000/  joseph)   Gid: ( 1000/ dc-tech)\nAccess: 2026-10-01 04:30:00.000000000\nModify: 2026-10-01 04:30:00.000000000</pre>`;
+        } else {
+          outputHtml = `<div class="dc-term-error">stat: cannot stat '${escapeHtml(target)}': No such file or directory</div>`;
+        }
+      } else if (action === 'bash' || action === 'sh') {
+        if (!target) {
+          outputHtml = `<div class="dc-term-error">${action}: missing script name</div>`;
+        } else if (target === 'tpu_turnup.sh') {
+          outputHtml = fileSystem['tpu_turnup.sh'].run();
+        } else if (fileSystem[target]) {
+          outputHtml = `<div class="dc-term-error">${action}: ${escapeHtml(target)}: cannot execute script format</div>`;
+        } else {
+          outputHtml = `<div class="dc-term-error">${action}: ${escapeHtml(target)}: No such file or directory</div>`;
+        }
+      } else if (['vim', 'vi', 'nano', 'edit', 'code'].includes(action)) {
+        outputHtml = `<div class="dc-term-muted">${action}: read-only terminal mode on bastion console. Use <span class="dc-term-cyan">'cat ${escapeHtml(target || 'filename')}'</span> to view contents.</div>`;
+      } else if (['rm', 'touch', 'mkdir', 'rmdir', 'chmod'].includes(action)) {
+        outputHtml = `<div class="dc-term-error">${action}: cannot modify '${escapeHtml(target || '')}': Read-only filesystem on bastion node.</div>`;
+      } else {
+        outputHtml = `<div class="dc-term-error">bash: ${escapeHtml(cmd)}: command not found. Type <span class="dc-term-cyan">'help'</span> or <span class="dc-term-cyan">'ls -la'</span> for files.</div>`;
+      }
     }
 
     if (outputHtml !== null) {
@@ -422,7 +625,15 @@
   });
 
   terminalBody.addEventListener('click', function(e) {
-    if (!e.target.closest('button')) {
+    const fileClick = e.target.closest('[data-cmd]');
+    if (fileClick) {
+      const cmd = fileClick.getAttribute('data-cmd');
+      terminalInput.value = cmd;
+      executeCommand(cmd);
+      terminalInput.focus();
+      return;
+    }
+    if (!e.target.closest('button') && !e.target.closest('a')) {
       terminalInput.focus();
     }
   });

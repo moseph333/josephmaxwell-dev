@@ -348,6 +348,33 @@ html.dark .dc-btn-outline:hover {
   font-size: 11.5px;
 }
 
+.dc-term-file {
+  color: #79c0ff;
+  cursor: pointer;
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  text-underline-offset: 3px;
+  transition: all 0.15s ease;
+  display: inline-block;
+}
+
+.dc-term-file:hover {
+  color: #a5d6ff;
+  text-decoration-style: solid;
+  background: rgba(121, 192, 255, 0.15);
+  border-radius: 2px;
+}
+
+.dc-term-file.executable {
+  color: #3fb950;
+  font-weight: 600;
+}
+
+.dc-term-file.executable:hover {
+  color: #56d364;
+  background: rgba(63, 185, 80, 0.15);
+}
+
 .dc-term-pre {
   margin: 0;
   padding: 0;

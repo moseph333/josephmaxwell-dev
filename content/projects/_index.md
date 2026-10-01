@@ -7,13 +7,13 @@ showReadingTime: false
 showTableOfContents: false
 ---
 
-A selection of impactful projects from my role as Datacenter Technician at Google. All descriptions use wording published on my [LinkedIn profile](https://www.linkedin.com/in/josephrmaxwell/).
+Selected engineering and operations work from my role as Datacenter Technician at Google. All details align with experience published on my [LinkedIn profile](https://www.linkedin.com/in/josephrmaxwell/).
 
 ---
 
-## 🔧 TPU Cluster Commissioning & Multi-Site Turn-Up
+## TPU Cluster Commissioning and Turn-Up
 
-**Role:** Datacenter Technician — Google Cloud AI/ML Infrastructure
+**Role:** Datacenter Technician, Google Cloud AI/ML Infrastructure
 
 Commission and maintain Google Cloud TPU accelerator clusters. Travel for multi-site deployments to handle physical installation, rack-level integration, and cluster turn-up for AI/ML training and serving infrastructure.
 
@@ -21,30 +21,28 @@ Commission and maintain Google Cloud TPU accelerator clusters. Travel for multi-
 - Physical installation and rack-level integration of TPU v5e and TPU v5p nodes
 - Multi-site cluster turn-up coordination with remote deployment engineers
 - Status handoffs during maintenance windows to protect cluster availability SLOs
-- Cross-functional collaboration with network operations and site logistics leads
+- Coordination with network operations and site logistics leads
 
-**Skills:** TPU v5e/v5p · Rack integration · Cluster commissioning · AI/ML infrastructure · Multi-site coordination
+**Skills:** TPU v5e/v5p, rack integration, cluster commissioning, AI/ML infrastructure, multi-site coordination
 
 ---
 
-## ⚡ Go-Based Logistics Automation Tool
+## Go Logistics Automation Tool
 
-**Role:** Author & Maintainer — Internal Tooling
+**Role:** Author and Maintainer, Internal Tooling
 
-Built an internal web-based logistics tool in Go and REST APIs to track hardware requests, replacing manual ticketing with structured tracking and publishing regional runbooks.
-
-**What it solved:** Manual ticketing created bottlenecks and introduced tracking errors across hardware request workflows. The tool introduced structured, auditable tracking and made regional runbooks accessible to the full team.
+Built an internal web-based logistics tool in Go with REST APIs to track hardware requests across the facility. Manual ticketing had created bottlenecks and introduced inventory errors between shifts. The service replaced unstructured tickets with auditable state transitions and gave the team central access to version-controlled regional runbooks.
 
 **Key contributions:**
 - Designed and built the Go web service and REST API layer
-- Replaced unstructured manual processes with data-driven tracking
-- Published and maintained regional runbooks as living documentation
+- Replaced unstructured ticket requests with state-driven tracking
+- Published regional runbooks directly within the tool as living documentation
 
-**Skills:** Go · REST APIs · Web development · Asset tracking · Technical documentation
+**Skills:** Go, REST APIs, web tools, asset tracking, technical documentation
 
 ---
 
-## 🔒 Data Sanitization Leadership — NIST SP 800-88
+## Data Sanitization Leadership (NIST SP 800-88)
 
 **Role:** Primary Lead, Site Data Sanitization Operations
 
@@ -56,44 +54,44 @@ Directed site data sanitization operations as Primary Lead, enforcing NIST SP 80
 - Maintained chain-of-custody tracking for all decommissioned hardware
 - Managed secure storage and physical destruction procedures
 
-**Skills:** NIST SP 800-88 · Information security · Chain-of-custody · Hardware decommissioning · Compliance
+**Skills:** NIST SP 800-88, information security, chain-of-custody, hardware decommissioning, compliance
 
 ---
 
-## 🔍 Root-Cause Failure Analysis — 23+ Production Architectures
+## Root-Cause Failure Analysis (23+ Architectures)
 
 **Role:** Diagnostics Lead
 
 Run root-cause failure analysis across 23+ production architectures (accelerator, compute, high-density storage). Update central repair documentation to eliminate recurring repair errors across the fleet.
 
 **Key contributions:**
-- Diagnosed hardware failures across a diverse fleet of accelerator, compute, and storage systems
+- Diagnosed hardware failures across production accelerator, compute, and storage systems
 - Updated centralized repair documentation to reduce mean-time-to-repair fleet-wide
-- Applied systematic RCA methodology to prevent recurrence
+- Applied systematic RCA methodology to identify component failure patterns
 
-**Skills:** Hardware diagnostics · Root-cause analysis · Documentation · Fleet operations
+**Skills:** Hardware diagnostics, root-cause analysis, documentation, fleet operations
 
 ---
 
-## 📡 Optical Network Fault Isolation
+## Optical Network Fault Isolation
 
-**Role:** Datacenter Technician — Network Physical Layer
+**Role:** Datacenter Technician, Network Physical Layer
 
 Isolate optical transport faults using power meters, Visual Fault Locators (VFL), and loopback plugs across fiber patch infrastructure and Optical Circuit Switches (OCS).
 
 **Key responsibilities:**
-- Physical-layer fiber testing and fault isolation using industry-standard optical tools
+- Physical-layer fiber testing and fault isolation using optical test tools
 - OCS routing troubleshooting and verification
-- Fiber infrastructure documentation and repair
+- Fiber infrastructure repair and cable plant documentation
 
-**Skills:** Optical Circuit Switches · Fiber testing · VFL · Power meters · Loopback testing · SC/LC/MPO connectors
+**Skills:** Optical Circuit Switches, fiber testing, VFL, power meters, loopback testing, SC/LC/MPO connectors
 
 ---
 
-## 🎓 Technician Certification & Mentorship
+## Technician Certification and Safety Leadership
 
-**Role:** Evaluator & Site Ergonomics Champion
+**Role:** Evaluator and Site Ergonomics Champion
 
 Evaluated and certified technicians on data security standards, Lockout/Tagout (LOTO) electrical safety, and hardware servicing. Served as site ergonomics champion for safe material handling during heavy rack installations.
 
-**Skills:** LOTO · Electrical safety · Mentorship · Ergonomics · Training & certification
+**Skills:** LOTO, electrical safety, mentorship, ergonomics, technical certification

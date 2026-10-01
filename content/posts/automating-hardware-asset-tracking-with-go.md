@@ -6,33 +6,35 @@ description: "How I replaced a manual ticketing bottleneck with a structured Go 
 tags: ["Go", "automation", "datacenter", "tooling", "REST APIs"]
 ---
 
-In any large-scale datacenter operation, the gap between "I need this hardware" and "hardware is where it should be" is often bridged by... a spreadsheet. Or worse, an email chain. I found myself in that exact situation — watching hardware request tracking generate inconsistencies, dropped handoffs, and wasted technician time.
+In a busy datacenter facility, tracking hardware requests through spreadsheets or free-text tickets inevitably causes dropped handoffs and lost shift hours. Technicians spend time verifying whether a part was staged, installed, or sent to sanitization instead of doing hardware turn-up.
 
-So I built a fix.
+To fix that friction in our workflow, I built a lightweight internal web service in Go backed by a REST API.
 
 ## The Problem
 
-Tracking hardware requests manually — even with a structured ticket system — introduces friction at every step. Fields get filled in inconsistently. Status updates fall through. The next technician to touch a task has no reliable history to work from.
+Manual request tracking breaks down in predictable ways across shift rotations:
 
-For a team responsible for physical hardware across a busy facility, this creates real cost: technician time chasing status, duplicate work, and errors that compound across a shift.
+- **Inconsistent status reporting:** Without rigid schemas, technicians use different terms for the same state, leaving the incoming shift guessing.
+- **Lost context:** Ticket comment threads bury part serial numbers and rack location changes.
+- **Wasted triage time:** Technicians walk the floor or ping chat channels just to check whether hardware arrived at the row.
 
-## The Approach: A Go Web Tool with a REST API
+## Why Go for Facility Tooling
 
-I chose **Go** for a few reasons:
+I chose Go for three practical operational reasons:
 
-1. **Fast compilation and lightweight binaries** — easy to deploy on existing infrastructure without heavy runtime dependencies
-2. **Strong standard library for HTTP servers** — `net/http` handles the web layer cleanly without needing a framework
-3. **Straightforward concurrency** — Go's goroutine model made handling concurrent requests simple and predictable
+1. **Self-contained deployment:** Compiling to a single static binary made installation and running on local linux bastions trivial, with zero runtime dependency management.
+2. **Standard library HTTP:** The built-in `net/http` package handled the routing and JSON serialization without adding third-party framework overhead.
+3. **Predictable concurrency:** Handling simultaneous updates from technicians on the datacenter floor was straightforward using standard goroutines and sync primitives.
 
-The tool exposed a REST API that served as the single source of truth for hardware request state. Each request had a structured lifecycle: initiated → assigned → in-progress → resolved. Every state transition was logged.
+The service exposed a REST API with an explicit request lifecycle: `initiated` → `assigned` → `in-progress` → `resolved`. Every transition required an authenticated technician ID and logged the timestamp to an append-only store.
 
 ```go
-// Simplified example of a status update handler
+// Example of a validated status transition handler
 func updateRequestStatus(w http.ResponseWriter, r *http.Request) {
     id := extractID(r)
     var update StatusUpdate
     if err := json.NewDecoder(r.Body).Decode(&update); err != nil {
-        http.Error(w, "bad request", http.StatusBadRequest)
+        http.Error(w, "invalid request body", http.StatusBadRequest)
         return
     }
     if err := store.Transition(id, update.Status, update.Note); err != nil {
@@ -43,32 +45,28 @@ func updateRequestStatus(w http.ResponseWriter, r *http.Request) {
 }
 ```
 
-The web frontend (served by the same Go binary) gave technicians a simple dashboard: current open requests, their status, who owns them, and a timestamped history.
+The web dashboard served by the same binary gave the floor leads real-time visibility into open hardware pulls, assigned owners, and pending sanitization batches.
 
-## Runbooks as Living Documentation
+## Co-locating Runbooks with the Tool
 
-A secondary feature that ended up being just as valuable: **regional runbooks** published directly from the tool. Rather than living in a separate wiki that went stale, runbooks were version-controlled alongside the codebase and rendered as part of the web UI.
+Regional runbooks were embedded directly into the tool rather than hosted on an external wiki. Because the markdown runbooks lived in the same git repository as the Go service, procedure updates went through the exact same peer review and deployment workflow as application code.
 
-When a procedure changed, the runbook update went through the same review process as a code change. This kept documentation honest.
+When a hardware RMA procedure changed, the runbook was updated in the commit that supported it.
 
-## What It Changed
+## Results
 
-The shift from manual tracking to the tool was measurable immediately:
+Putting an explicit API in front of hardware requests produced immediate operational benefits:
 
-- **Reduced dropped handoffs** — every state change had a named owner and timestamp
-- **Faster onboarding** — new technicians could see current state and history without asking someone
-- **Consistent vocabulary** — structured fields eliminated the ambiguity of free-text status notes
+- **Zero ambiguous handoffs:** Every status change recorded a verified technician and timestamp.
+- **Faster shift transitions:** Incoming technicians reviewed the dashboard queue in two minutes instead of asking for status over chat.
+- **Audit-ready records:** Decommissioned drives and hardware swaps retained clean logs for compliance audits.
 
-## Lessons for Datacenter Tooling
+## Practical Takeaways
 
-If you're thinking about building something similar, a few things I'd emphasize:
-
-**Start with the workflow, not the code.** The most important design work happened before I wrote a line of Go — mapping out exactly what states a request could be in, what transitions were legal, and who could perform them.
-
-**Lightweight is a feature.** A tool that's simple to run and deploy gets used. A tool that requires infrastructure setup gets abandoned.
-
-**Make the runbooks part of the code.** Documentation that lives next to the thing it documents is documentation that stays current.
+- **Define legal state transitions first:** The most valuable work was mapping out valid state progressions before writing handler code.
+- **Single binaries win in production:** A tool that requires Python virtualenvs or node_modules on an internal bastion gets neglected; a single static Go binary keeps running.
+- **Version runbooks alongside code:** Documentation that shares the release lifecycle of your tools stays accurate.
 
 ---
 
-*Interested in datacenter tooling, hardware operations, or Linux infrastructure? Follow me on [LinkedIn](https://www.linkedin.com/in/josephrmaxwell/) or check out my self-hosting tutorials at [selfhostdojo.com](https://selfhostdojo.com).*
+Follow my work on [LinkedIn](https://www.linkedin.com/in/josephrmaxwell/) or read my self-hosting and Linux infrastructure guides on [selfhostdojo.com](https://selfhostdojo.com).

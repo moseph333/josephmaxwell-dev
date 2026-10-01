@@ -9,11 +9,11 @@ showTableOfContents: true
 
 ## Who I Am
 
-I'm **Joseph Maxwell**, a Datacenter Technician at Google with hands-on experience building and maintaining the hyperscale infrastructure that powers AI and cloud computing at scale.
+I'm **Joseph Maxwell**, a Datacenter Technician at Google working on production AI/ML accelerator infrastructure.
 
-My work lives at the intersection of **physical hardware** and **systems operations** — I commission TPU accelerator clusters, isolate optical network faults, lead data sanitization operations, and build Go tools that eliminate technician toil.
+My daily work combines physical hardware turn-up and site operations: commissioning TPU accelerator clusters, diagnosing optical paths across Optical Circuit Switches (OCS), running NIST SP 800-88 data sanitization, and writing Go tools to eliminate repetitive manual inventory tracking.
 
-Before Google, I spent 14 years in client-facing IT consultation and operations management, which gave me a foundation in clear communication, hardware servicing, and fast incident triage under pressure.
+Before Google, I spent 14 years in freelance IT consultation and hardware servicing. That background taught me how to triage hardware faults quickly, manage client expectations, and execute under maintenance window pressure.
 
 ---
 
@@ -72,6 +72,6 @@ Handled technical consultation, infrastructure deployment, and hardware servicin
 
 ## Find Me Online
 
-- 💼 [LinkedIn — josephrmaxwell](https://www.linkedin.com/in/josephrmaxwell/)
-- 🐙 [GitHub — moseph333](https://github.com/moseph333)
-- 🥋 [selfhostdojo.com](https://selfhostdojo.com) — self-hosting tutorials and Linux guides
+- [LinkedIn — josephrmaxwell](https://www.linkedin.com/in/josephrmaxwell/)
+- [GitHub — moseph333](https://github.com/moseph333)
+- [selfhostdojo.com](https://selfhostdojo.com) — self-hosting tutorials and Linux guides

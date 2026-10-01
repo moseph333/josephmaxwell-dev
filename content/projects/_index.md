@@ -27,49 +27,35 @@ Commission and maintain Google Cloud TPU accelerator clusters. Travel for multi-
 
 ---
 
-## Go Logistics Automation Tool
+## AI-Assisted Hardware Diagnostics & Team Mentorship
+
+**Role:** Datacenter Technician, Hardware Diagnostics
+
+Perform root-cause failure analysis across 23+ production architectures (accelerator, compute, high-density storage) by pairing hands-on systems knowledge with agentic AI tooling. Actively share techniques and train teammates on practical AI workflows to accelerate triage and reduce incident resolution time.
+
+**Key contributions:**
+- Triage and diagnose hardware failures across 23+ production accelerator, compute, and storage architectures
+- Integrate agentic AI into daily diagnostic workflows to parse complex error signatures and isolate component faults faster
+- Mentor and train fellow technicians on practical AI workflows and prompt patterns for hardware troubleshooting
+- Update centralized repair documentation based on diagnostic findings to eliminate recurring failures
+
+**Skills:** Agentic AI, hardware diagnostics, root-cause analysis (RCA), team mentorship, 23+ server architectures, technical documentation
+
+---
+
+## Facility Logistics Automation
 
 **Role:** Author and Maintainer, Internal Tooling
 
-Built an internal web-based logistics tool in Go with REST APIs to track hardware requests across the facility. Manual ticketing had created bottlenecks and introduced inventory errors between shifts. The service replaced unstructured tickets with auditable state transitions and gave the team central access to version-controlled regional runbooks.
+Built the facility's primary hardware tracking tool using Google Apps Script, Google Forms, and Google Sheets to manage hardware requests across shift rotations. Manual ticketing and unstructured chat requests had created bottlenecks and inventory errors between shifts. The tool standardized intake with structured forms, automated state transitions and notifications via Apps Script, and provided the floor with real-time inventory visibility. Currently expanding facility tooling capabilities in Go.
 
 **Key contributions:**
-- Designed and built the Go web service and REST API layer
-- Replaced unstructured ticket requests with state-driven tracking
-- Published regional runbooks directly within the tool as living documentation
+- Built the facility's most widely adopted logistics tool using Google Apps Script, Google Forms, and Google Sheets
+- Standardized hardware intake and replaced unstructured shift handoffs with automated state transitions
+- Provided real-time inventory tracking and audit logs across shift rotations
+- Currently developing backend services in Go to expand local facility tooling
 
-**Skills:** Go, REST APIs, web tools, asset tracking, technical documentation
-
----
-
-## Data Sanitization Leadership (NIST SP 800-88)
-
-**Role:** Primary Lead, Site Data Sanitization Operations
-
-Directed site data sanitization operations as Primary Lead, enforcing NIST SP 800-88 compliance, secure storage rules, and physical destruction standards across hardware decommissioning and platform upgrades.
-
-**Key responsibilities:**
-- Led sanitization operations across hardware decommissioning and upgrade cycles
-- Enforced NIST SP 800-88 media sanitization standards
-- Maintained chain-of-custody tracking for all decommissioned hardware
-- Managed secure storage and physical destruction procedures
-
-**Skills:** NIST SP 800-88, information security, chain-of-custody, hardware decommissioning, compliance
-
----
-
-## Root-Cause Failure Analysis (23+ Architectures)
-
-**Role:** Diagnostics Lead
-
-Run root-cause failure analysis across 23+ production architectures (accelerator, compute, high-density storage). Update central repair documentation to eliminate recurring repair errors across the fleet.
-
-**Key contributions:**
-- Diagnosed hardware failures across production accelerator, compute, and storage systems
-- Updated centralized repair documentation to reduce mean-time-to-repair fleet-wide
-- Applied systematic RCA methodology to identify component failure patterns
-
-**Skills:** Hardware diagnostics, root-cause analysis, documentation, fleet operations
+**Skills:** Google Apps Script, Google Workspace (Forms & Sheets), workflow automation, Go (learning), inventory management
 
 ---
 
@@ -85,6 +71,22 @@ Isolate optical transport faults using power meters, Visual Fault Locators (VFL)
 - Fiber infrastructure repair and cable plant documentation
 
 **Skills:** Optical Circuit Switches, fiber testing, VFL, power meters, loopback testing, SC/LC/MPO connectors
+
+---
+
+## Storage Media Destruction Operations (NIST SP 800-88)
+
+**Role:** Storage Media Destruction Operations
+
+Handled the secure staging, chain-of-custody tracking, and physical destruction of decommissioned storage media in accordance with NIST SP 800-88 physical destruction standards across hardware decommissioning cycles and platform upgrades.
+
+**Key responsibilities:**
+- Executed physical destruction procedures for decommissioned storage media
+- Enforced NIST SP 800-88 physical media sanitization and destruction standards
+- Maintained strict chain-of-custody tracking from decommission staging to physical destruction
+- Managed secure storage protocols for end-of-life media
+
+**Skills:** NIST SP 800-88, physical storage destruction, chain-of-custody, hardware decommissioning, physical security
 
 ---
 

@@ -1,35 +1,49 @@
 ---
-title: "Automating Hardware Asset Tracking with Go and REST APIs"
+title: "Automating Datacenter Logistics: From Apps Script to Go"
 date: 2026-09-30
 draft: true
-description: "How I replaced a manual ticketing bottleneck with a structured Go web tool that brought visibility and consistency to datacenter hardware request workflows."
-tags: ["Go", "automation", "datacenter", "tooling", "REST APIs"]
+description: "How building our facility's most popular hardware tracking workflow with Google Forms, Sheets, and Apps Script solved shift handoffs, and what I am taking forward as I learn Go."
+tags: ["datacenter", "automation", "Apps Script", "Go", "tooling"]
 ---
 
-In a busy datacenter facility, tracking hardware requests through spreadsheets or free-text tickets inevitably causes dropped handoffs and lost shift hours. Technicians spend time verifying whether a part was staged, installed, or sent to sanitization instead of doing hardware turn-up.
+In a busy datacenter facility, tracking hardware requests through unstructured chat pings or messy ticket threads inevitably causes dropped handoffs and lost shift hours. Technicians spend time walking rows or asking around to verify whether a part was staged, installed, or routed for physical destruction instead of doing hardware turn-up.
 
-To fix that friction in our workflow, I built a lightweight internal web service in Go backed by a REST API.
+To eliminate that friction, I built a facility tracking system that quickly became our team's most widely adopted tool.
 
 ## The Problem
 
-Manual request tracking breaks down in predictable ways across shift rotations:
+Manual request tracking breaks down across shift rotations in predictable ways:
 
-- **Inconsistent status reporting:** Without rigid schemas, technicians use different terms for the same state, leaving the incoming shift guessing.
-- **Lost context:** Ticket comment threads bury part serial numbers and rack location changes.
-- **Wasted triage time:** Technicians walk the floor or ping chat channels just to check whether hardware arrived at the row.
+- **Inconsistent status reporting:** Without rigid schemas, technicians describe the same status differently, leaving the incoming shift guessing.
+- **Lost context:** Chat threads and free-text ticket notes bury part serial numbers, MAC addresses, and rack location updates.
+- **Wasted triage time:** Incoming shift leads spend 20 to 30 minutes verifying the status of active requests instead of starting rack work.
 
-## Why Go for Facility Tooling
+## Meeting Technicians Where They Work
 
-I chose Go for three practical operational reasons:
+When building tools for operational teams, adoption beats architectural purity every time. Technicians on the datacenter floor don't want to authenticate against a separate web portal or maintain local dependencies.
 
-1. **Self-contained deployment:** Compiling to a single static binary made installation and running on local linux bastions trivial, with zero runtime dependency management.
-2. **Standard library HTTP:** The built-in `net/http` package handled the routing and JSON serialization without adding third-party framework overhead.
-3. **Predictable concurrency:** Handling simultaneous updates from technicians on the datacenter floor was straightforward using standard goroutines and sync primitives.
+I built the initial system using Google Forms, Google Sheets, and Google Apps Script:
 
-The service exposed a REST API with an explicit request lifecycle: `initiated` → `assigned` → `in-progress` → `resolved`. Every transition required an authenticated technician ID and logged the timestamp to an append-only store.
+1. **Structured intake with Google Forms:** The form enforced strict validation on asset serial numbers, target rack coordinates, component categories, and requester details.
+2. **Automated state engine with Apps Script:** When an intake form was submitted, Apps Script validated the payload, stamped an immutable timestamp, assigned an initial state (`Staged`), and triggered notifications to on-duty leads.
+3. **Real-time visibility in Sheets:** A locked summary sheet served as a live floor dashboard, color-coding aging requests and recording every state transition.
+
+Because the tool lived inside tools the team already used daily, adoption was immediate. It resolved ambiguity between shifts and became the standard workflow for tracking facility hardware requests.
+
+## Why I Am Learning Go
+
+Building the Apps Script tool proved how valuable clean state machines and structured schemas are to floor operations. As I started exploring ways to integrate directly with local Linux bastions, parse hardware logs, and build lightweight CLI utilities, Go became the clear next language to learn.
+
+A few operational characteristics make Go appealing for datacenter infrastructure:
+
+- **Single static binaries:** A compiled Go binary runs on a bastion host with zero dependencies—no Python virtual environments or runtime managers to maintain across machines.
+- **Standard library power:** Go's `net/http` and `encoding/json` packages make building internal APIs or calling external webhooks straightforward without pulling in dozens of third-party libraries.
+- **Strong typing and clear concurrency:** Go's strict types catch data model errors at compile time, and goroutines make handling simultaneous floor queries predictable.
+
+Here is an example pattern from my current Go learning projects, modeling the same validated status transitions that made the Apps Script tool reliable:
 
 ```go
-// Example of a validated status transition handler
+// Example of a validated status transition handler in Go
 func updateRequestStatus(w http.ResponseWriter, r *http.Request) {
     id := extractID(r)
     var update StatusUpdate
@@ -45,27 +59,11 @@ func updateRequestStatus(w http.ResponseWriter, r *http.Request) {
 }
 ```
 
-The web dashboard served by the same binary gave the floor leads real-time visibility into open hardware pulls, assigned owners, and pending sanitization batches.
-
-## Co-locating Runbooks with the Tool
-
-Regional runbooks were embedded directly into the tool rather than hosted on an external wiki. Because the markdown runbooks lived in the same git repository as the Go service, procedure updates went through the exact same peer review and deployment workflow as application code.
-
-When a hardware RMA procedure changed, the runbook was updated in the commit that supported it.
-
-## Results
-
-Putting an explicit API in front of hardware requests produced immediate operational benefits:
-
-- **Zero ambiguous handoffs:** Every status change recorded a verified technician and timestamp.
-- **Faster shift transitions:** Incoming technicians reviewed the dashboard queue in two minutes instead of asking for status over chat.
-- **Audit-ready records:** Decommissioned drives and hardware swaps retained clean logs for compliance audits.
-
 ## Practical Takeaways
 
-- **Define legal state transitions first:** The most valuable work was mapping out valid state progressions before writing handler code.
-- **Single binaries win in production:** A tool that requires Python virtualenvs or node_modules on an internal bastion gets neglected; a single static Go binary keeps running.
-- **Version runbooks alongside code:** Documentation that shares the release lifecycle of your tools stays accurate.
+- **Adoption comes from low friction:** The best tool is the one technicians actually use during a high-pressure maintenance window.
+- **Define legal state transitions first:** Mapping valid states (`Staged` → `In-Transit` → `Installed` → `Decommissioned`) mattered far more than the specific programming language.
+- **Automate what hurts:** Solving shift handoffs saved real technician hours every week and created clean audit trails for hardware tracking.
 
 ---
 

@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#070c18" />
+    </linearGradient>
+    <linearGradient id="border" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.9" />
+      <stop offset="30%" stop-color="#2563eb" />
+      <stop offset="100%" stop-color="#1e3a8a" />
+    </linearGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="10" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Squircle Base -->
+  <rect x="18" y="18" width="476" height="476" rx="106" fill="url(#bg)" stroke="url(#border)" stroke-width="18" />
+
+  <!-- Luminous Cyan Status Dot -->
+  <circle cx="408" cy="106" r="30" fill="#38bdf8" opacity="0.25" filter="url(#glow)" />
+  <circle cx="408" cy="106" r="18" fill="#38bdf8" />
+  <circle cx="408" cy="106" r="8" fill="#f0f9ff" />
+
+  <!-- Monogram JM (Vector Filled Geometric Sans) -->
+  <g transform="translate(14, 0)">
+    <!-- J -->
+    <path d="M 206 155
+             L 206 295
+             C 206 348, 164 374, 112 374
+             C 76 374, 58 355, 58 333
+             L 100 333
+             C 100 342, 106 347, 116 347
+             C 142 347, 158 331, 158 295
+             L 158 155
+             Z"
+          fill="#ffffff" />
+
+    <!-- M -->
+    <path d="M 234 370
+             L 234 155
+             L 284 155
+             L 326 270
+             L 368 155
+             L 418 155
+             L 418 370
+             L 372 370
+             L 372 222
+             L 338 312
+             L 314 312
+             L 280 222
+             L 280 370
+             Z"
+          fill="#ffffff" />
+  </g>
+</svg>

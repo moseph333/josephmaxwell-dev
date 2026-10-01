@@ -42,22 +42,22 @@
   </div>
 
   {{/* Right Column: Interactive Bastion Terminal */}}
-  <div class="dc-hero-term not-prose">
+  <div class="dc-hero-term not-prose" role="region" aria-label="Interactive Bastion Terminal">
     <div class="dc-term-window">
       <div class="dc-term-header">
-        <div class="dc-term-dots">
+        <div class="dc-term-dots" aria-hidden="true">
           <span class="dc-term-dot" style="background: #ff5f56;"></span>
           <span class="dc-term-dot" style="background: #ffbd2e;"></span>
           <span class="dc-term-dot" style="background: #27c93f;"></span>
         </div>
         <div class="dc-term-title">
-          <span style="color: #3fb950;">●</span> joseph@bastion:~$
+          <span style="color: #3fb950;" aria-hidden="true">●</span> joseph@bastion:~$
         </div>
-        <div style="color: #8b949e; font-size: 10px; text-transform: uppercase;">bash</div>
+        <div style="color: #8b949e; font-size: 10px; text-transform: uppercase;" aria-hidden="true">bash</div>
       </div>
 
-      <div class="dc-term-chips">
-        <span style="color: #8b949e; font-size: 10px; font-weight: 600; text-transform: uppercase; margin-right: 4px;">Run:</span>
+      <div class="dc-term-chips" role="toolbar" aria-label="Quick commands">
+        <span style="color: #8b949e; font-size: 10px; font-weight: 600; text-transform: uppercase; margin-right: 4px;" aria-hidden="true">Run:</span>
         <button type="button" class="dc-chip-btn term-chip" data-cmd="whoami">whoami</button>
         <button type="button" class="dc-chip-btn term-chip" data-cmd="ls -la">ls -la</button>
         <button type="button" class="dc-chip-btn term-chip" data-cmd="cat facility_tracker.gs">cat facility_tracker.gs</button>
@@ -69,17 +69,17 @@
       </div>
 
       <div id="terminal-body" class="dc-term-body">
-        <div id="terminal-output"></div>
+        <div id="terminal-output" role="log" aria-live="polite" aria-atomic="false"></div>
 
         <div class="dc-term-input-row">
-          <span class="dc-term-prompt">joseph@bastion:~$</span>
+          <span class="dc-term-prompt" aria-hidden="true">joseph@bastion:~$</span>
           <input id="terminal-input" type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
                  class="dc-term-input"
                  aria-label="Terminal command input" />
         </div>
       </div>
 
-      <div class="dc-term-status">
+      <div class="dc-term-status" aria-hidden="true">
         <div style="display: flex; align-items: center; gap: 8px;">
           <span style="color: #3fb950; font-weight: bold;">● ONLINE</span>
           <span>|</span>
@@ -148,7 +148,7 @@
   <div class="dc-skills-grid">
 
     <div>
-      <h4 class="dc-skills-heading">Hardware</h4>
+      <h3 class="dc-skills-heading">Hardware</h3>
       <ul class="dc-skills-list">
         <li class="dc-skills-item">TPU v5e / v5p accelerator clusters</li>
         <li class="dc-skills-item">GPU & compute servers</li>
@@ -158,7 +158,7 @@
     </div>
 
     <div>
-      <h4 class="dc-skills-heading">Networking & Optical</h4>
+      <h3 class="dc-skills-heading">Networking & Optical</h3>
       <ul class="dc-skills-list">
         <li class="dc-skills-item">Optical Circuit Switches (OCS)</li>
         <li class="dc-skills-item">Fiber (SC / LC / MPO) patch infrastructure</li>
@@ -168,7 +168,7 @@
     </div>
 
     <div>
-      <h4 class="dc-skills-heading">Operating Systems & Linux</h4>
+      <h3 class="dc-skills-heading">Operating Systems & Linux</h3>
       <ul class="dc-skills-list">
         <li class="dc-skills-item">Linux (Ubuntu, Debian, RHEL)</li>
         <li class="dc-skills-item">Server BIOS / IPMI / BMC</li>
@@ -178,7 +178,7 @@
     </div>
 
     <div>
-      <h4 class="dc-skills-heading">AI & Diagnostics</h4>
+      <h3 class="dc-skills-heading">AI & Diagnostics</h3>
       <ul class="dc-skills-list">
         <li class="dc-skills-item">Agentic AI hardware triage</li>
         <li class="dc-skills-item">Team AI workflow mentoring</li>
@@ -188,7 +188,7 @@
     </div>
 
     <div>
-      <h4 class="dc-skills-heading">Automation & Tooling</h4>
+      <h3 class="dc-skills-heading">Automation & Tooling</h3>
       <ul class="dc-skills-list">
         <li class="dc-skills-item">Google Apps Script</li>
         <li class="dc-skills-item">Google Workspace (Forms & Sheets)</li>
@@ -198,7 +198,7 @@
     </div>
 
     <div>
-      <h4 class="dc-skills-heading">Safety & Compliance</h4>
+      <h3 class="dc-skills-heading">Safety & Compliance</h3>
       <ul class="dc-skills-list">
         <li class="dc-skills-item">Storage media destruction (NIST SP 800-88)</li>
         <li class="dc-skills-item">Lockout/Tagout (LOTO) electrical safety</li>
@@ -448,7 +448,7 @@
         const clickCmd = isExec ? `./${name}` : `cat ${name}`;
         const cls = isExec ? 'dc-term-file executable' : 'dc-term-file';
         const indicator = isExec ? '*' : '';
-        out += `<span class="${cls}" data-cmd="${clickCmd}" title="Click to ${isExec ? 'run' : 'view'}">${name}${indicator}</span>`;
+        out += `<button type="button" class="${cls}" data-cmd="${clickCmd}" title="Click to ${isExec ? 'run' : 'view'}" aria-label="${isExec ? 'Run' : 'View'} ${name}">${name}${indicator}</button>`;
       }
       out += '</div><div class="dc-term-muted" style="font-size: 10.5px;">Click any file above or type <span class="dc-term-cyan">cat &lt;file&gt;</span>.</div>';
       return out;
@@ -461,7 +461,7 @@
         const clickCmd = isExec ? `./${name}` : `cat ${name}`;
         const cls = isExec ? 'dc-term-file executable' : 'dc-term-file';
         const indicator = isExec ? '*' : '';
-        out += `${meta.perms}  ${meta.links} ${meta.owner} ${meta.group} ${String(meta.size).padStart(4, ' ')} ${meta.date} <span class="${cls}" data-cmd="${clickCmd}" title="Click to ${isExec ? 'run' : 'view'}">${name}${indicator}</span>\n`;
+        out += `${meta.perms}  ${meta.links} ${meta.owner} ${meta.group} ${String(meta.size).padStart(4, ' ')} ${meta.date} <button type="button" class="${cls}" data-cmd="${clickCmd}" title="Click to ${isExec ? 'run' : 'view'}" aria-label="${isExec ? 'Run' : 'View'} ${name}">${name}${indicator}</button>\n`;
       }
       out += '</div><div class="dc-term-muted" style="margin-top: 6px; font-size: 10.5px;">Click any file above or type <span class="dc-term-cyan">cat &lt;file&gt;</span> / <span class="dc-term-cyan">./tpu_turnup.sh</span>.</div>';
       return out;
@@ -647,24 +647,30 @@
     });
   });
 
-  // Typewriter auto-type "whoami" on page load
-  let initialCmd = 'whoami';
-  let charIdx = 0;
-  terminalInput.disabled = true;
-  const timer = setInterval(() => {
-    if (charIdx < initialCmd.length) {
-      terminalInput.value += initialCmd.charAt(charIdx);
-      charIdx++;
-    } else {
-      clearInterval(timer);
-      terminalInput.disabled = false;
-      setTimeout(() => {
-        terminalInput.value = '';
-        executeCommand('whoami');
-        terminalInput.focus();
-      }, 300);
-    }
-  }, 75);
+  // Initialization: auto-type or instantly render whoami
+  const prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const initialCmd = 'whoami';
+
+  if (prefersReducedMotion) {
+    executeCommand(initialCmd);
+  } else {
+    let charIdx = 0;
+    terminalInput.disabled = true;
+    const timer = setInterval(() => {
+      if (charIdx < initialCmd.length) {
+        terminalInput.value += initialCmd.charAt(charIdx);
+        charIdx++;
+      } else {
+        clearInterval(timer);
+        terminalInput.disabled = false;
+        setTimeout(() => {
+          terminalInput.value = '';
+          executeCommand(initialCmd);
+          // Intentionally do not call terminalInput.focus() on page load to prevent focus hijacking
+        }, 300);
+      }
+    }, 75);
+  }
 
 })();
 </script>

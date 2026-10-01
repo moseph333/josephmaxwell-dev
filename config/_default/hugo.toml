@@ -14,3 +14,8 @@ summaryLength = 40
     enableDNT = true
   [privacy.youTube]
     privacyEnhanced = true
+
+[markup]
+  [markup.highlight]
+    style = "github-dark"
+

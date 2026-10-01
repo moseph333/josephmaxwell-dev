@@ -15,6 +15,7 @@
 
 [[main]]
   name = "LinkedIn"
+  title = "LinkedIn"
   url = "https://www.linkedin.com/in/josephrmaxwell/"
   weight = 50
   [main.params]

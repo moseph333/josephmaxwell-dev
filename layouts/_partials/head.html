@@ -118,10 +118,12 @@
   {{ if templates.Exists "_partials/favicons.html" }}
     {{ partialCached "favicons.html" .Site }}
   {{ else }}
-    <link rel="apple-touch-icon" sizes="180x180" href="{{ "apple-touch-icon.png" | relURL }}" />
-    <link rel="icon" type="image/png" sizes="32x32" href="{{ "favicon-32x32.png" | relURL }}" />
-    <link rel="icon" type="image/png" sizes="16x16" href="{{ "favicon-16x16.png" | relURL }}" />
-    <link rel="manifest" href="{{ "site.webmanifest" | relURL }}" />
+    <link rel="icon" type="image/svg+xml" href="{{ "favicon.svg" | relURL }}?v=2" />
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ "favicon-32x32.png" | relURL }}?v=2" />
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ "favicon-16x16.png" | relURL }}?v=2" />
+    <link rel="shortcut icon" href="{{ "favicon.ico" | relURL }}?v=2" />
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ "apple-touch-icon.png" | relURL }}?v=2" />
+    <link rel="manifest" href="{{ "site.webmanifest" | relURL }}?v=2" />
   {{ end }}
   {{/* Site Verification */}}
   {{ with .Site.Params.verification.google }}

@@ -12,11 +12,11 @@
   <body
     class="m-auto flex h-screen max-w-7xl flex-col bg-neutral px-6 text-lg leading-7 text-neutral-900 dark:bg-neutral-800 dark:text-neutral sm:px-14 md:px-24 lg:px-32"
   >
-    <div id="the-top" class="absolute flex self-center">
+    <div id="the-top" class="absolute flex self-center z-50">
       <a
-        class="-translate-y-8 rounded-b-lg bg-primary-200 px-3 py-1 text-sm focus:translate-y-0 dark:bg-neutral-600"
+        class="-translate-y-14 rounded-b-lg bg-primary-600 px-4 py-2 text-sm font-semibold text-white shadow-md focus:translate-y-0 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 dark:bg-primary-500 dark:text-neutral-900 transition-transform"
         href="#main-content"
-        ><span class="pe-2 font-bold text-primary-600 dark:text-primary-400">&darr;</span
+        ><span class="pe-2 font-bold" aria-hidden="true">&darr;</span
         >{{ i18n "nav.skip_to_main" }}</a
       >
     </div>
@@ -27,7 +27,7 @@
       {{ partial "header/basic.html" . }}
     {{ end }}
     <div class="relative flex grow flex-col">
-      <main id="main-content" class="grow">
+      <main id="main-content" class="grow focus:outline-none" tabindex="-1">
         {{ block "main" . }}{{ end }}
       </main>
       {{ if .Site.Params.footer.showScrollToTop | default true }}

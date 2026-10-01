@@ -116,7 +116,7 @@ html.dark .dc-hero-headline {
 }
 
 html.dark .dc-hero-desc {
-  color: #94a3b8;
+  color: #cbd5e1;
 }
 
 /* ── Hero Buttons ── */
@@ -271,6 +271,11 @@ html.dark .dc-btn-outline:hover {
   border-color: #58a6ff;
 }
 
+.dc-chip-btn:focus-visible {
+  outline: 2px solid #58a6ff;
+  outline-offset: 2px;
+}
+
 .dc-term-body {
   flex: 1;
   padding: 12px 14px;
@@ -356,6 +361,14 @@ html.dark .dc-btn-outline:hover {
   text-underline-offset: 3px;
   transition: all 0.15s ease;
   display: inline-block;
+  background: transparent;
+  border: none;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  padding: 0 2px;
+  margin: 0;
+  text-align: left;
 }
 
 .dc-term-file:hover {
@@ -363,6 +376,13 @@ html.dark .dc-btn-outline:hover {
   text-decoration-style: solid;
   background: rgba(121, 192, 255, 0.15);
   border-radius: 2px;
+}
+
+.dc-term-file:focus-visible {
+  outline: 2px solid #58a6ff;
+  outline-offset: 2px;
+  border-radius: 2px;
+  background: rgba(121, 192, 255, 0.2);
 }
 
 .dc-term-file.executable {
@@ -513,7 +533,7 @@ html.dark .dc-project-title {
 }
 
 html.dark .dc-project-desc {
-  color: #94a3b8;
+  color: #cbd5e1;
 }
 
 .dc-project-tags {
@@ -575,12 +595,12 @@ html.dark .dc-skills-box {
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: #64748b;
+  color: #334155;
   margin: 0 0 0.5rem 0;
 }
 
 html.dark .dc-skills-heading {
-  color: #94a3b8;
+  color: #cbd5e1;
 }
 
 .dc-skills-list {
@@ -601,3 +621,39 @@ html.dark .dc-skills-heading {
 html.dark .dc-skills-item {
   color: #cbd5e1;
 }
+
+/* ── Global Focus-Visible Styling ── */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
+}
+
+html.dark a:focus-visible,
+html.dark button:focus-visible {
+  outline-color: #60a5fa;
+}
+
+.dc-btn-primary:focus-visible,
+.dc-btn-outline:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 3px;
+}
+
+html.dark .dc-btn-primary:focus-visible,
+html.dark .dc-btn-outline:focus-visible {
+  outline-color: #93c5fd;
+}
+
+/* ── Reduced Motion Preference ── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+

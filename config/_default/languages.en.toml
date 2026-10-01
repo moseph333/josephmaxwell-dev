@@ -15,9 +15,8 @@ copyright = "&copy; 2026 Joseph Maxwell"
   name = "Joseph Maxwell"
   image = "img/joseph.jpg"
   headline = "Data Center Technician at Google | Hyperscale Infrastructure | AI-Assisted Diagnostics"
-  bio = "Datacenter Technician at Google diagnosing hardware using systems knowledge and agentic AI. Experience covers TPU cluster turn-up, optical fiber testing across Optical Circuit Switches, and physical storage media destruction. Extended and improved area-specific logistics tooling in Google Apps Script, Forms, and Sheets to cut repetitive entries and streamline technician workflows; currently learning Go."
+  bio = "Datacenter Technician at Google diagnosing hardware using systems knowledge and agentic AI. Experience covers TPU cluster turn-up, optical fiber testing across Optical Circuit Switches, and physical storage media destruction. Extended and improved area-specific logistics tooling in Google Apps Script, Forms, and Sheets to eliminate repetitive entries and streamline technician workflows, applying agentic AI to build and optimize operational tools."
   links = [
     { linkedin = "https://www.linkedin.com/in/josephrmaxwell/" },
-    { github = "https://github.com/moseph333" },
     { link = "https://selfhostdojo.com" },
   ]

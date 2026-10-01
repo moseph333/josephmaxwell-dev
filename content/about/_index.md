@@ -11,7 +11,7 @@ showTableOfContents: true
 
 I'm **Joseph Maxwell**, a Datacenter Technician at Google working on production AI/ML accelerator infrastructure.
 
-My daily work combines physical hardware turn-up and site operations: commissioning TPU accelerator clusters, diagnosing optical paths across Optical Circuit Switches (OCS), triaging complex hardware faults with agentic AI, and optimizing technician workflows with Google Apps Script alongside active Go learning.
+My daily work combines physical hardware turn-up and site operations: commissioning TPU accelerator clusters, diagnosing optical paths across Optical Circuit Switches (OCS), triaging complex hardware faults with agentic AI, and directing AI agents and Google Apps Script to eliminate repetitive technician workflows.
 
 Before Google, I spent 14 years in freelance IT consultation and hardware servicing. That background taught me how to triage hardware faults quickly, manage client expectations, and execute under maintenance window pressure.
 
@@ -31,7 +31,7 @@ Isolate optical transport faults using power meters, Visual Fault Locators (VFL)
 Perform root-cause failure analysis across 23+ production architectures (accelerator, compute, high-density storage) by combining hands-on systems knowledge with agentic AI tooling. Actively share techniques and train teammates on practical AI workflows to speed up incident triage.
 
 **Area Logistics Tooling & Workflow Optimization**
-Adapted an internal logistics tool from a mentor, extending and improving it with Google Apps Script, Forms, and Sheets for a key site functional area. Streamlined technician workflows, cut repetitive entries, and reduced shift handoff errors. Currently exploring backend tooling in Go.
+Adapted an internal logistics tool from a mentor, extending and improving it with Google Apps Script, Forms, and Sheets for a key site functional area. Streamlined technician workflows, cut repetitive entries, and reduced shift handoff errors.
 
 **Storage Media Destruction**
 Handled the secure staging, chain-of-custody tracking, and physical destruction of decommissioned storage media according to NIST SP 800-88 physical destruction standards.
@@ -64,7 +64,7 @@ Handled technical consultation, infrastructure deployment, and hardware servicin
 | **Networking / Optical** | Optical Circuit Switches (OCS), fiber (SC/LC/MPO), VFLs, power meters, loopback testing |
 | **Operating Systems** | Linux (Ubuntu, Debian, RHEL/CentOS), server BIOS / IPMI / BMC, Proxmox |
 | **AI & Diagnostics** | Agentic AI hardware triage, AI workflow training & team mentorship, root-cause analysis (RCA) |
-| **Automation & Tooling** | Google Apps Script, Google Workspace (Forms & Sheets), Bash scripting, Go (currently learning) |
+| **Automation & Tooling** | Google Apps Script, Google Workspace (Forms & Sheets), Agent-directed tooling & workflows, Bash |
 | **Safety & Compliance** | Storage media destruction (NIST SP 800-88), Lockout/Tagout (LOTO), chain-of-custody tracking |
 | **Operations** | Root-cause analysis, maintenance window coordination, technician certification |
 
@@ -73,5 +73,4 @@ Handled technical consultation, infrastructure deployment, and hardware servicin
 ## Find Me Online
 
 - [LinkedIn — josephrmaxwell](https://www.linkedin.com/in/josephrmaxwell/)
-- [GitHub — moseph333](https://github.com/moseph333)
 - [selfhostdojo.com](https://selfhostdojo.com) — self-hosting tutorials and Linux guides

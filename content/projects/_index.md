@@ -47,15 +47,15 @@ Perform root-cause failure analysis across 23+ production architectures (acceler
 
 **Role:** Maintainer & Tooling Contributor, Operations Workflow
 
-Adapted an internal logistics request tool originally created by a mentor, then extended and improved it using Google Apps Script, Google Forms, and Google Sheets for a specific functional area of the site. The improved tool streamlined daily technician workflows, reduced handoff errors, and eliminated repetitive manual data entry across shift rotations. Currently exploring backend services in Go to expand local systems tooling.
+Adapted an internal logistics request tool originally created by a mentor, then extended and improved it using Google Apps Script, Google Forms, and Google Sheets for a specific functional area of the site. The improved tool streamlined daily technician workflows, reduced handoff errors, and eliminated repetitive manual data entry across shift rotations.
 
 **Key contributions:**
 - Adapted and extended a mentor's initial tracking template into a reliable logistics workflow for a key site functional area
 - Implemented automated state transitions, notifications, and data validation using Google Apps Script to eliminate repetitive data entry
 - Standardized hardware intake forms and streamlined technician handoffs, reducing missing details between shifts
-- Currently developing backend services in Go to explore compiled tooling for local bastion environments
+- Maintained the tool across shift rotations to keep parts tracking auditable and real-time
 
-**Skills:** Google Apps Script, Google Workspace (Forms & Sheets), workflow optimization, Go (learning), operational logistics
+**Skills:** Google Apps Script, Google Workspace (Forms & Sheets), workflow optimization, agent-assisted tooling, operational logistics
 
 ---
 

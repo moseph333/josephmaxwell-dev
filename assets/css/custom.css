@@ -1,0 +1,576 @@
+/* ==========================================================================
+   josephmaxwell.dev - Custom Design System
+   ========================================================================== */
+
+/* ── Hero & Terminal Layout ── */
+.dc-hero-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 1.5rem 0 2.5rem 0;
+  border-bottom: 1px solid rgba(150, 150, 150, 0.2);
+}
+
+.dc-hero-bio {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.dc-hero-term {
+  width: 100%;
+  min-width: 0;
+}
+
+@media (min-width: 1024px) {
+  .dc-hero-container {
+    flex-direction: row;
+    align-items: center;
+    gap: 2.75rem;
+  }
+  .dc-hero-bio {
+    flex: 0 0 42%;
+    max-width: 42%;
+    align-items: flex-start;
+    text-align: left;
+  }
+  .dc-hero-term {
+    flex: 1 1 58%;
+  }
+}
+
+/* ── Avatar / Monogram ── */
+.dc-avatar-wrap {
+  margin-bottom: 1.25rem;
+}
+
+.dc-avatar-monogram {
+  width: 96px;
+  height: 96px;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 1.85rem;
+  user-select: none;
+  background: #eff6ff;
+  color: #2563eb;
+  border: 3px solid #93c5fd;
+  box-shadow: 0 6px 18px rgba(37, 99, 235, 0.15);
+}
+
+html.dark .dc-avatar-monogram {
+  background: #0f172a;
+  color: #60a5fa;
+  border-color: #1e3a8a;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.5);
+}
+
+.dc-avatar-img {
+  width: 96px;
+  height: 96px;
+  border-radius: 9999px;
+  object-fit: cover;
+  border: 3px solid #93c5fd;
+  box-shadow: 0 6px 18px rgba(37, 99, 235, 0.15);
+}
+
+html.dark .dc-avatar-img {
+  border-color: #1e3a8a;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.5);
+}
+
+/* ── Hero Typography ── */
+.dc-hero-name {
+  font-size: 2.15rem;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+  margin: 0 0 0.4rem 0;
+  color: #0f172a;
+}
+
+html.dark .dc-hero-name {
+  color: #f8fafc;
+}
+
+.dc-hero-headline {
+  font-size: 1.05rem;
+  font-weight: 600;
+  line-height: 1.4;
+  margin: 0 0 0.85rem 0;
+  color: #2563eb;
+}
+
+html.dark .dc-hero-headline {
+  color: #60a5fa;
+}
+
+.dc-hero-desc {
+  font-size: 0.925rem;
+  line-height: 1.6;
+  margin: 0 0 1.25rem 0;
+  color: #475569;
+}
+
+html.dark .dc-hero-desc {
+  color: #94a3b8;
+}
+
+/* ── Hero Buttons ── */
+.dc-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+}
+
+@media (min-width: 1024px) {
+  .dc-hero-actions {
+    justify-content: flex-start;
+  }
+}
+
+.dc-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.55rem 1.15rem;
+  border-radius: 8px;
+  background: #0A66C2;
+  color: #ffffff !important;
+  font-weight: 600;
+  font-size: 0.875rem;
+  text-decoration: none !important;
+  box-shadow: 0 2px 6px rgba(10, 102, 194, 0.25);
+  transition: all 0.15s ease;
+}
+
+.dc-btn-primary:hover {
+  background: #004182;
+  transform: translateY(-1px);
+}
+
+.dc-btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.55rem 1.15rem;
+  border-radius: 8px;
+  border: 2px solid #2563eb;
+  color: #2563eb !important;
+  font-weight: 600;
+  font-size: 0.875rem;
+  text-decoration: none !important;
+  background: transparent;
+  transition: all 0.15s ease;
+}
+
+.dc-btn-outline:hover {
+  background: rgba(37, 99, 235, 0.08);
+  transform: translateY(-1px);
+}
+
+html.dark .dc-btn-outline {
+  border-color: #60a5fa;
+  color: #93c5fd !important;
+}
+
+html.dark .dc-btn-outline:hover {
+  background: rgba(96, 165, 250, 0.12);
+}
+
+/* ── Interactive Terminal Window ── */
+.dc-term-window {
+  background: #0d1117;
+  border: 1px solid #30363d;
+  border-radius: 12px;
+  box-shadow: 0 16px 36px -10px rgba(0, 0, 0, 0.65), 0 0 0 1px rgba(255, 255, 255, 0.04);
+  display: flex;
+  flex-direction: column;
+  height: 425px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  overflow: hidden;
+  text-align: left;
+}
+
+@media (max-width: 640px) {
+  .dc-term-window {
+    height: 385px;
+  }
+}
+
+.dc-term-header {
+  background: #161b22;
+  border-bottom: 1px solid #21262d;
+  padding: 9px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  user-select: none;
+  flex-shrink: 0;
+}
+
+.dc-term-dots {
+  display: flex;
+  gap: 7px;
+}
+
+.dc-term-dot {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.dc-term-title {
+  color: #e6edf3;
+  font-size: 12px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  letter-spacing: 0.02em;
+}
+
+.dc-term-chips {
+  background: #11151c;
+  border-bottom: 1px solid #21262d;
+  padding: 6px 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  overflow-x: auto;
+  flex-shrink: 0;
+}
+
+.dc-term-chips::-webkit-scrollbar {
+  display: none;
+}
+
+.dc-chip-btn {
+  background: #21262d;
+  color: #c9d1d9;
+  border: 1px solid #30363d;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-family: inherit;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  line-height: 1.2;
+}
+
+.dc-chip-btn:hover {
+  background: #1f6feb;
+  color: #ffffff;
+  border-color: #58a6ff;
+}
+
+.dc-term-body {
+  flex: 1;
+  padding: 12px 14px;
+  overflow-y: auto;
+  background: #0d1117;
+  color: #c9d1d9;
+  font-size: 12px;
+  line-height: 1.5;
+  cursor: text;
+}
+
+.dc-term-body::-webkit-scrollbar {
+  width: 6px;
+}
+
+.dc-term-body::-webkit-scrollbar-track {
+  background: #0d1117;
+}
+
+.dc-term-body::-webkit-scrollbar-thumb {
+  background: #30363d;
+  border-radius: 3px;
+}
+
+.dc-term-entry {
+  margin-bottom: 12px;
+}
+
+.dc-term-history-cmd {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.dc-term-history-cmd .prompt {
+  color: #3fb950;
+  font-weight: bold;
+  user-select: none;
+}
+
+.dc-term-history-cmd .cmd {
+  color: #79c0ff;
+  font-weight: 600;
+}
+
+.dc-term-result {
+  padding-left: 10px;
+  border-left: 2px solid #21262d;
+  color: #c9d1d9;
+  font-size: 11.5px;
+  line-height: 1.5;
+}
+
+.dc-term-green {
+  color: #3fb950;
+  font-weight: 600;
+}
+
+.dc-term-cyan {
+  color: #79c0ff;
+  font-weight: 500;
+}
+
+.dc-term-yellow {
+  color: #e3b341;
+}
+
+.dc-term-muted {
+  color: #8b949e;
+}
+
+.dc-term-error {
+  color: #f85149;
+  font-size: 11.5px;
+}
+
+.dc-term-pre {
+  margin: 0;
+  padding: 0;
+  font-family: inherit;
+  font-size: 11px;
+  line-height: 1.45;
+  color: #c9d1d9;
+  background: transparent !important;
+  border: none !important;
+  overflow-x: auto;
+  white-space: pre;
+}
+
+.dc-term-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 4px 14px;
+  margin-top: 4px;
+}
+
+@media (max-width: 640px) {
+  .dc-term-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.dc-term-input-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.dc-term-prompt {
+  color: #3fb950;
+  font-weight: bold;
+  white-space: nowrap;
+  user-select: none;
+  font-size: 12px;
+}
+
+.dc-term-input {
+  flex: 1;
+  background: transparent !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  color: #58a6ff !important;
+  font-family: inherit;
+  font-size: 12px;
+  padding: 0 !important;
+  margin: 0 !important;
+  width: 100%;
+  min-width: 0;
+  caret-color: #58a6ff;
+}
+
+.dc-term-status {
+  background: #161b22;
+  border-top: 1px solid #21262d;
+  padding: 5px 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 10px;
+  color: #8b949e;
+  user-select: none;
+  flex-shrink: 0;
+}
+
+/* ── Featured Projects Section ── */
+.dc-projects-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+}
+
+@media (min-width: 640px) {
+  .dc-projects-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .dc-projects-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.dc-project-card {
+  display: flex;
+  flex-direction: column;
+  border-radius: 0.75rem;
+  border: 2px solid #e2e8f0;
+  padding: 1.5rem;
+  background: #f8fafc;
+  transition: all 0.2s ease;
+}
+
+html.dark .dc-project-card {
+  border-color: #334155;
+  background: rgba(30, 41, 59, 0.45);
+}
+
+.dc-project-card:hover {
+  border-color: #2563eb;
+  transform: translateY(-2px);
+}
+
+html.dark .dc-project-card:hover {
+  border-color: #60a5fa;
+}
+
+.dc-project-icon {
+  font-size: 1.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.dc-project-title {
+  font-size: 1.125rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem 0;
+  color: #0f172a;
+}
+
+html.dark .dc-project-title {
+  color: #f8fafc;
+}
+
+.dc-project-desc {
+  font-size: 0.875rem;
+  line-height: 1.55;
+  margin: 0;
+  flex: 1;
+  color: #475569;
+}
+
+html.dark .dc-project-desc {
+  color: #94a3b8;
+}
+
+.dc-project-tags {
+  margin-top: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.375rem;
+}
+
+.dc-tag-pill {
+  padding: 0.15rem 0.6rem;
+  font-size: 0.75rem;
+  border-radius: 9999px;
+  background: #eff6ff;
+  color: #1d4ed8;
+  font-weight: 500;
+}
+
+html.dark .dc-tag-pill {
+  background: rgba(30, 58, 138, 0.4);
+  color: #93c5fd;
+}
+
+/* ── Skills & Tech Stack Section ── */
+.dc-skills-box {
+  margin-top: 0.5rem;
+  margin-bottom: 3rem;
+  border-radius: 0.75rem;
+  border: 2px solid #e2e8f0;
+  padding: 1.5rem;
+  background: #f8fafc;
+}
+
+html.dark .dc-skills-box {
+  border-color: #334155;
+  background: rgba(30, 41, 59, 0.45);
+}
+
+.dc-skills-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .dc-skills-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .dc-skills-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.dc-skills-heading {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #64748b;
+  margin: 0 0 0.5rem 0;
+}
+
+html.dark .dc-skills-heading {
+  color: #94a3b8;
+}
+
+.dc-skills-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.dc-skills-item {
+  font-size: 0.875rem;
+  color: #334155;
+  line-height: 1.45;
+}
+
+html.dark .dc-skills-item {
+  color: #cbd5e1;
+}

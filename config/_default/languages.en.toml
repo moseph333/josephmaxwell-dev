@@ -1,0 +1,23 @@
+locale = "en-US"
+label = "English"
+direction = "ltr"
+weight = 1
+
+title = "Joseph Maxwell"
+copyright = "&copy; 2026 Joseph Maxwell"
+
+[params]
+  dateFormat = "2 January 2006"
+  mainSections = ["posts"]
+  description = "Datacenter Technician at Google | Hyperscale Infrastructure | TPU Deployments & Hardware Diagnostics"
+
+[params.author]
+  name = "Joseph Maxwell"
+  image = "img/joseph.jpg"
+  headline = "Data Center Technician at Google | Hyperscale Infrastructure | TPU Deployments & Hardware Diagnostics"
+  bio = "Datacenter Technician working on AI/ML accelerator infrastructure, optical networking, and hardware diagnostics. Experience covers multi-site cluster turn-up, Optical Circuit Switch routing, and physical-layer fiber testing. I also write Go tools to automate asset tracking and cut technician toil."
+  links = [
+    { linkedin = "https://www.linkedin.com/in/josephrmaxwell/" },
+    { github = "https://github.com/moseph333" },
+    { link = "https://selfhostdojo.com" },
+  ]

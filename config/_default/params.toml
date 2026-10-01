@@ -1,0 +1,57 @@
+colorScheme = "ocean"
+defaultAppearance = "dark"
+autoSwitchAppearance = true
+
+enableSearch = true
+enableCodeCopy = true
+enableImageLazyLoading = true
+enableImageWebp = true
+enableQuicklink = true
+
+fingerprintAlgorithm = "sha256"
+
+[header]
+  layout = "basic"
+  showTitle = true
+
+[footer]
+  showCopyright = true
+  showThemeAttribution = false
+  showAppearanceSwitcher = true
+  showScrollToTop = true
+
+[homepage]
+  layout = "custom"
+  showRecent = false
+  recentLimit = 5
+
+[article]
+  showDate = true
+  showDateUpdated = false
+  showAuthor = true
+  showBreadcrumbs = true
+  showDraftLabel = true
+  showEdit = false
+  showHeadingAnchors = true
+  showPagination = true
+  invertPagination = false
+  showReadingTime = true
+  showTableOfContents = true
+  showTaxonomies = true
+  showWordCount = false
+  showComments = false
+  sharingLinks = ["linkedin", "reddit", "email"]
+
+[list]
+  showBreadcrumbs = true
+  showSummary = true
+  showTableOfContents = false
+  showTaxonomies = true
+  groupByYear = true
+  paginationWidth = 1
+
+[sitemap]
+  excludedKinds = ["taxonomy", "term"]
+
+[taxonomy]
+  showTermCount = true

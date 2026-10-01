@@ -43,19 +43,19 @@ Perform root-cause failure analysis across 23+ production architectures (acceler
 
 ---
 
-## Facility Logistics Tooling & Extension
+## Area Logistics Tooling & Workflow Optimization
 
-**Role:** Maintainer & Tooling Contributor, Internal Operations
+**Role:** Maintainer & Tooling Contributor, Operations Workflow
 
-Adapted an internal hardware tracking tool originally created by a mentor, then heavily extended, improved, and maintained it using Google Apps Script, Google Forms, and Google Sheets. The extended workflow standardized intake with structured forms, automated state transitions and notifications via Apps Script, and gave floor leads real-time visibility into parts movement across shift rotations. Currently exploring backend services in Go to expand local facility tooling.
+Adapted an internal logistics request tool originally created by a mentor, then extended and improved it using Google Apps Script, Google Forms, and Google Sheets for a specific functional area of the site. The improved tool streamlined daily technician workflows, reduced handoff errors, and eliminated repetitive manual data entry across shift rotations. Currently exploring backend services in Go to expand local systems tooling.
 
 **Key contributions:**
-- Adapted and extended a mentor's initial tracking template into the facility's primary logistics tool
-- Implemented automated state transitions, notifications, and data validation with Google Apps Script
-- Standardized hardware intake forms and eliminated dropped context between shift handoffs
-- Currently developing backend services in Go to explore compiled tooling for local bastions
+- Adapted and extended a mentor's initial tracking template into a reliable logistics workflow for a key site functional area
+- Implemented automated state transitions, notifications, and data validation using Google Apps Script to eliminate repetitive data entry
+- Standardized hardware intake forms and streamlined technician handoffs, reducing missing details between shifts
+- Currently developing backend services in Go to explore compiled tooling for local bastion environments
 
-**Skills:** Google Apps Script, Google Workspace (Forms & Sheets), workflow automation, Go (learning), inventory tracking
+**Skills:** Google Apps Script, Google Workspace (Forms & Sheets), workflow optimization, Go (learning), operational logistics
 
 ---
 

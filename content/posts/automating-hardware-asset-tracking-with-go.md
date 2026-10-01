@@ -2,13 +2,13 @@
 title: "Automating Datacenter Logistics: From Apps Script to Go"
 date: 2026-09-30
 draft: true
-description: "How building our facility's most popular hardware tracking workflow with Google Forms, Sheets, and Apps Script solved shift handoffs, and what I am taking forward as I learn Go."
+description: "How extending an area logistics workflow with Google Forms, Sheets, and Apps Script eliminated repetitive entries and shift handoff friction, and what I am taking forward into Go."
 tags: ["datacenter", "automation", "Apps Script", "Go", "tooling"]
 ---
 
-In a busy datacenter facility, tracking hardware requests through unstructured chat pings or messy ticket threads inevitably causes dropped handoffs and lost shift hours. Technicians spend time walking rows or asking around to verify whether a part was staged, installed, or routed for physical destruction instead of doing hardware turn-up.
+In a busy datacenter facility, tracking hardware logistics for a specific operational area through chat pings or messy ticket threads inevitably causes dropped handoffs and lost shift hours. Technicians spend time walking rows or asking around to verify whether a part was staged, installed, or routed for physical destruction instead of doing hardware turn-up.
 
-To eliminate that friction, I took an internal tracking template originally shared by my mentor, then extended and evolved it into our facility's most widely adopted logistics tool.
+To eliminate that friction, I took an internal tracking template originally shared by my mentor, then extended and evolved it into a streamlined logistics workflow for our area that eliminated repetitive entries and cut shift errors.
 
 ## The Problem
 
@@ -22,15 +22,15 @@ Manual request tracking breaks down across shift rotations in predictable ways:
 
 When building tools for operational teams, adoption beats architectural purity every time. Technicians on the datacenter floor don't want to authenticate against a separate web portal or maintain local dependencies.
 
-My mentor had created a simple spreadsheet to log incoming parts, which proved that centralizing requests could work. But as our shift rotations and deployment pace increased, manual spreadsheet entries started suffering from missing serial numbers and untracked status changes.
+My mentor had created a simple spreadsheet to log incoming parts for our area, which proved that centralizing requests in one place helped. But as ticket volume increased, manual spreadsheet entries forced technicians into constant repetitive data entry, and dropped serial numbers or untracked status changes still slipped through during shift rotations.
 
 Rather than trying to force an entirely new platform onto the team, I took my mentor's foundation and built an automation layer around it using Google Forms, Google Sheets, and Google Apps Script:
 
-1. **Structured intake with Google Forms:** Replaced direct spreadsheet editing with a form that enforced strict validation on asset serial numbers, target rack coordinates, component categories, and requester details.
+1. **Structured intake with Google Forms:** Replaced manual spreadsheet typing with a streamlined form that eliminated repetitive field entries and enforced strict validation on asset serial numbers, target rack coordinates, component categories, and requester details.
 2. **Automated state engine with Apps Script:** When an intake form was submitted, Apps Script validated the payload, stamped an immutable timestamp, assigned an initial state (`Staged`), and triggered notifications to on-duty leads.
-3. **Real-time visibility in Sheets:** A locked summary sheet served as a live floor dashboard, color-coding aging requests and recording every state transition.
+3. **Real-time visibility in Sheets:** A locked summary sheet served as a live dashboard for our area, color-coding aging requests and recording every state transition.
 
-Because the workflow met technicians inside tools they already had open all day, adoption was immediate. It resolved ambiguity between shifts and became the standard way our team managed hardware requests across the facility.
+Because the workflow met technicians inside tools they already had open all day, adoption was immediate. It cut out repetitive typing, resolved handoff ambiguity between shifts, and dramatically reduced logging errors.
 
 ## Why I Am Learning Go
 

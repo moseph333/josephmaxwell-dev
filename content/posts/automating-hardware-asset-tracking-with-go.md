@@ -1,6 +1,7 @@
 ---
 title: "Automating Hardware Asset Tracking with Go and REST APIs"
 date: 2026-09-30
+draft: true
 description: "How I replaced a manual ticketing bottleneck with a structured Go web tool that brought visibility and consistency to datacenter hardware request workflows."
 tags: ["Go", "automation", "datacenter", "tooling", "REST APIs"]
 ---
